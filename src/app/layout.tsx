@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import { fontNotoSansJP } from "@/configs/font";
 import { siteConfig } from "@/configs/site";
 import { cn } from "@/libs/utils";
@@ -49,6 +50,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
