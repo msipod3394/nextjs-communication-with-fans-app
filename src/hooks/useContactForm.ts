@@ -1,10 +1,10 @@
 import { useToast } from "@/components/ui/use-toast";
 import { useContactFormContext } from "@/contexts/ContactFormContext";
-import { formSchema } from "@/lib/contact/formSchema";
+import { ContactFormSchema } from "@/lib/contact/contactFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export const useContactForm = () => {
   const router = useRouter();
@@ -17,8 +17,8 @@ export const useContactForm = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
 
   // useForm
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof ContactFormSchema>>({
+    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -31,7 +31,7 @@ export const useContactForm = () => {
   });
 
   // フォームの値をAPIに送信
-  const sendForm = async (values: z.infer<typeof formSchema>) => {
+  const sendForm = async (values: z.infer<typeof ContactFormSchema>) => {
     const { name, email, phone, company, inquiry_category, inquiry_content } =
       values;
 
@@ -70,7 +70,7 @@ export const useContactForm = () => {
   };
 
   // onSubmit
-  const onSubmit = useCallback(
+  const onSubmit: SubmitHandler = useCallback(
     async (values: z.infer<typeof formSchema>) => {
       // ローディング開始
       setIsSending(true);

@@ -3,7 +3,7 @@ import { z } from "zod";
 // 電話番号の正規表現
 const phoneRegex = /^(\d{2,4}-?\d{2,4}-?\d{4})$/;
 
-export const formSchema = z.object({
+export const ContactFormSchema = z.object({
   // お名前
   name: z
     .string()

@@ -1,12 +1,12 @@
 "use client";
+import { PrivacyPolicyField } from "@/app/components/elements/form/PrivacyPolicyField";
+import { RadioField } from "@/app/components/elements/form/RadioField";
+import { TextField } from "@/app/components/elements/form/TextField";
+import { TextareaField } from "@/app/components/elements/form/TextareaField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useContactForm } from "@/hooks/useContactForm";
 import { Icon } from "../icon/icon";
-import { PrivacyPolicyField } from "./FormField/PrivacyPolicyField";
-import { RadioField } from "./FormField/RadioField";
-import { TextField } from "./FormField/TextField";
-import { TextareaField } from "./FormField/TextareaField";
 
 export const ContactForm = () => {
   // カスタムフックの呼び出し
