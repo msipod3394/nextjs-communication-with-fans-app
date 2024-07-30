@@ -1,7 +1,7 @@
 "use client";
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-interface ContactFormValues {
+type ContactFormValues = {
   name: string;
   email: string;
   phone: string;
@@ -9,20 +9,21 @@ interface ContactFormValues {
   inquiry_category: string;
   inquiry_content: string;
   privacy_policy: boolean;
-}
+};
 
-interface ContactFormContextType {
+// コンテキストの型を定義
+type ContactFormContextType = {
   values: ContactFormValues | null;
   setValues: (values: ContactFormValues | null) => void;
-}
+};
 
+// コンテキストオブジェクトの作成
 const ContactFormContext = createContext<ContactFormContextType | undefined>(
   undefined
 );
 
-export const ContactFormProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+// コンテキストプロバイダーコンポーネントの作成
+export const ContactFormProvider = ({ children }: React.ReactNode) => {
   const [values, setValues] = useState<ContactFormValues | null>(null);
 
   return (
@@ -32,10 +33,15 @@ export const ContactFormProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+// コンテキストの値を取得するためのカスタムフックを定義
 export const useContactFormContext = () => {
   const context = useContext(ContactFormContext);
   if (!context) {
-    throw new Error("");
+    throw new Error(
+      "useContactFormContextは、ContactFormProvider内で使用してください"
+    );
   }
+
+  // コンテキストの値を返す
   return context;
 };

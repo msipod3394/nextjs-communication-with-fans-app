@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { fontNotoSansJP } from "@/configs/font";
 import { siteConfig } from "@/configs/site";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
 
