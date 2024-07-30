@@ -20,11 +20,11 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   <div>
     <h1>「{inquiry_category}」のお問合せがありました</h1>
     <h2>【お問合せ内容】</h2>
+    <p>お問合せ概要：{inquiry_category}</p>
     <p>お名前：{name}</p>
     <p>メールアドレス：{email}</p>
     <p>電話番号：{phone}</p>
     <p>会社名：{company}</p>
-    <p>お問合せ概要：{inquiry_category}</p>
     <p>お問合せ内容：{inquiry_content}</p>
   </div>
 );

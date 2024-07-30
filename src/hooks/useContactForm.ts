@@ -1,14 +1,14 @@
-import { useContactForm } from "@/contexts/ContactFormContext";
+import { useContactFormContext } from "@/contexts/ContactFormContext";
 import { formSchema } from "@/libs/contact/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const useMailForm = () => {
+export const useContactForm = () => {
   const router = useRouter();
 
-  const { setValues } = useContactForm();
+  const { setValues } = useContactFormContext();
 
   const [isSending, setisSending] = useState<boolean>(false);
 

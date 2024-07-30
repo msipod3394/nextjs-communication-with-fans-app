@@ -32,7 +32,7 @@ export const ContactFormProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-export const useContactForm = () => {
+export const useContactFormContext = () => {
   const context = useContext(ContactFormContext);
   if (!context) {
     throw new Error("");
