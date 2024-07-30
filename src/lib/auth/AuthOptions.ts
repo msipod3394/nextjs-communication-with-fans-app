@@ -1,6 +1,8 @@
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+import { db } from "../db";
 
 // Auth オプション
 export const AuthOptions: NextAuthOptions = {
@@ -17,6 +19,7 @@ export const AuthOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
   ],
+  adapter: PrismaAdapter(db),
   // サインインページの設定
   pages: {
     signIn: "/login",
@@ -32,5 +35,9 @@ export const AuthOptions: NextAuthOptions = {
       }
       return session;
     },
+  },
+  // セッション管理をJWTに切替
+  session: {
+    strategy: "jwt",
   },
 };
