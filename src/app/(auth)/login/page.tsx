@@ -1,3 +1,4 @@
+import { AuthLogin } from "@/components/auth/AuthLogin";
 import { LoginForm } from "@/components/auth/LoginForm";
 import Link from "next/link";
 
@@ -8,10 +9,13 @@ export default function Login() {
         <div className="grid gap-4">
           <h1 className="font-semibold text-2xl md:text-3xl">ログイン</h1>
           <p className="text-sm text-muted-foreground">
-            ログインするにはメールアドレスとパスワードを入力してください。
+            ログインするには、
+            <br />
+            メールアドレスとパスワードを入力してください。
           </p>
         </div>
         <LoginForm />
+        <AuthLogin />
         <p className="px-6 text-center text-sm text-muted-foreground">
           <Link
             href={"/signup"}

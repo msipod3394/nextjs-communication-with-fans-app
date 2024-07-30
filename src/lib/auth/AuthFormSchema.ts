@@ -8,6 +8,6 @@ export const AuthFormSchema = z.object({
   // パスワード
   password: z
     .string()
-    .min(2, { message: "パスワードは2文字以上で入力してください。" })
+    .min(6, { message: "パスワードは6文字以上で入力してください。" })
     .max(10, { message: "パスワードは10文字以内で入力してください。" }),
 });
