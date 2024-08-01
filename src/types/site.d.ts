@@ -13,9 +13,11 @@ export type SiteConfig = {
 export type NavItem = {
   title: string;
   href: string;
+  icon?: string;
   disabled?: boolean;
 };
 
-export type HeaderNavConfig = {
+export type NavConfig = {
   mainNav: NavItem[];
+  dashboardNav: NavItem[];
 };

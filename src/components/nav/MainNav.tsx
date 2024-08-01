@@ -1,4 +1,5 @@
 "use client";
+import { siteConfig } from "@/configs/site";
 import { NavItem } from "@/types/site";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
@@ -18,13 +19,15 @@ export default function MainNav({ items = [] }: MainNavProps) {
   return (
     <div className="flex items-center md:gap-8">
       <Link href={"/"} className="hidden md:flex">
-        <span className="font-bold hidden sm:inline-block">Post Writer</span>
+        <span className="font-bold hidden sm:inline-block">
+          {siteConfig.name}
+        </span>
       </Link>
       <nav className="md:flex gap-6 hidden">
         {items.map((item, index) => (
           <>
             {!item.disabled && (
-              <Link key={index} href={item.href} className="">
+              <Link key={index} href={item.href} className="text-sm">
                 {item.title}
               </Link>
             )}

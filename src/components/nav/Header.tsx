@@ -6,14 +6,14 @@ import MainNav from "./MainNav";
 
 export default function Header() {
   return (
-    <header className="z-40 bg-background">
+    <header className="z-40 bg-background px-6">
       <div className="flex h-20 py-6 justify-between">
         <MainNav items={NavItem.mainNav} />
         <Link
           href={"/login"}
           className={cn(
             buttonVariants({ variant: "secondary", size: "sm" }),
-            "px-4 font-bold"
+            "px-4 font-bold text-sm"
           )}
         >
           ログイン
