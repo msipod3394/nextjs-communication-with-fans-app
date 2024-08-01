@@ -13,7 +13,7 @@ export const PostItem = ({ post }: PostItemProps) => {
       <div className="grid gap-1">
         <Link
           href={`/editor/${post.id}`}
-          className="text-md font-bold hover:underline"
+          className="text-md font-medium hover:underline"
         >
           {post.title}
         </Link>

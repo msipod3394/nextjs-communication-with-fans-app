@@ -7,7 +7,7 @@ type MainNavProps = {
   items: NavItem[];
 };
 
-export default function MoblileNav({ items }: MainNavProps) {
+export default function MobileNav({ items }: MainNavProps) {
   // body のスクロールをロック
   useLockBodyScroll();
 

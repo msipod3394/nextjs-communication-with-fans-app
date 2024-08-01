@@ -26,6 +26,13 @@ export const AuthOptions: NextAuthOptions = {
   },
   // 認証後に返される情報
   callbacks: {
+    // ユーザーが存在する場合、トークンにユーザーIDを追加
+    async jwt({ token, user }) {
+      if (user) {
+        return { ...token, id: user.id };
+      }
+      return token;
+    },
     async session({ token, session }) {
       if (token) {
         session.user.id = token.id;

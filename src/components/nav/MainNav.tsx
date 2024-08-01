@@ -4,18 +4,17 @@ import { NavItem } from "@/types/site";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { Button } from "../ui/button";
-import MoblileNav from "./MoblileNav";
+import MobileNav from "./MobileNav";
 
 type MainNavProps = {
   items: NavItem[];
   children?: ReactNode;
 };
 
-export default function MainNav({ items = [] }: MainNavProps) {
+export default function MainNav({ items }: MainNavProps) {
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
-  // console.log(items);
   return (
     <div className="flex items-center md:gap-8">
       <Link href={"/"} className="hidden md:flex">
@@ -24,15 +23,14 @@ export default function MainNav({ items = [] }: MainNavProps) {
         </span>
       </Link>
       <nav className="md:flex gap-6 hidden">
-        {items.map((item, index) => (
-          <>
-            {!item.disabled && (
-              <Link key={index} href={item.href} className="text-sm">
+        {items.map(
+          (item) =>
+            !item.disabled && (
+              <Link key={item.title} href={item.href} className="text-sm">
                 {item.title}
               </Link>
-            )}
-          </>
-        ))}
+            )
+        )}
       </nav>
       <Button
         className="md:hidden"
@@ -40,7 +38,7 @@ export default function MainNav({ items = [] }: MainNavProps) {
       >
         <span>メニュー</span>
       </Button>
-      {showMobileMenu && <MoblileNav items={items} />}
+      {showMobileMenu && <MobileNav items={items} />} {/* 修正箇所 */}
     </div>
   );
 }

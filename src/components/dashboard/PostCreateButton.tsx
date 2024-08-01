@@ -1,8 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Icon } from "../icon/icon";
 import { Button, ButtonProps, buttonVariants } from "../ui/button";
+import { toast } from "../ui/use-toast";
 
 interface PostCreateButtonProps extends ButtonProps {}
 
@@ -11,10 +13,41 @@ export const PostCreateButton = ({
   variant,
   ...props
 }: PostCreateButtonProps) => {
+  const router = useRouter();
 
   // クリック後の状態管理
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const toggleLoading = () => setIsLoading((prev) => !prev);
+
+  //
+  const sendPost = async () => {
+    setIsLoading(true);
+
+    // PostsAPIの実行
+    const response = await fetch("api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Untitled Post",
+      }),
+    });
+
+    setIsLoading(false);
+
+    if (!response.ok) {
+      return toast({
+        title: "問題が発生しました",
+        description: "投稿が作成されませんでした。もう一度お試しください。",
+        variant: "destructive",
+      });
+    }
+
+    const post = await response.json();
+
+    router.refresh();
+    router.push(`editor/${post.id}`);
+  };
 
   return (
     <Button
@@ -23,7 +56,7 @@ export const PostCreateButton = ({
         { "cursor-not-allowed opacity-60": isLoading }, // isLoadingがtrueの時に適用される
         className
       )}
-      onClick={toggleLoading}
+      onClick={sendPost}
       disabled={isLoading}
       {...props}
     >

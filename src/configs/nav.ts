@@ -1,6 +1,7 @@
 import { NavConfig } from "@/types/site";
 
 export const NavItem: NavConfig = {
+  // ヘッダー
   mainNav: [
     {
       title: "プロフィール",
@@ -20,6 +21,7 @@ export const NavItem: NavConfig = {
       disabled: true,
     },
   ],
+  // ダッシュボード
   dashboardNav: [
     {
       title: "写真投稿",

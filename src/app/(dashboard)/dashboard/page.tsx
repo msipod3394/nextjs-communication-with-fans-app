@@ -42,11 +42,19 @@ export default async function DashboardPage() {
         <PostCreateButton />
       </DashboardHeader>
       <div>
-        <div className="divide-y border rounded-md">
-          {posts.map((post) => (
-            <PostItem key={post.id} post={post} />
-          ))}
-        </div>
+        {posts.length ? (
+          <div className="divide-y border rounded-md">
+            {posts.map((post) => (
+              <PostItem key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-1">
+            <p className="font-semibold text-gray-800">
+              記事を投稿してみましょう！
+            </p>
+          </div>
+        )}
       </div>
     </DashboardShell>
   );

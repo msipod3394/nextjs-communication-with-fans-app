@@ -6,6 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Post } from "@prisma/client";
 import Link from "next/link";
 import { Icon } from "../icon/icon";
 
