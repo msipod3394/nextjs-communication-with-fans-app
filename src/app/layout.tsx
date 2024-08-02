@@ -1,3 +1,5 @@
+import Footer from "@/components/nav/Footer";
+import Header from "@/components/nav/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { fontNotoSansJP } from "@/configs/font";
 import { siteConfig } from "@/configs/site";
@@ -49,7 +51,12 @@ export default function RootLayout({
           fontNotoSansJP.className
         )}
       >
-        {children}
+        <div className="flex min-h-screen w-screen flex-col">
+          <Header />
+          <hr className="border-t" />
+          {children}
+          <Footer />
+        </div>
         <Toaster />
       </body>
     </html>

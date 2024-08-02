@@ -18,7 +18,6 @@ export const PostCreateButton = ({
   // クリック後の状態管理
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //
   const sendPost = async () => {
     setIsLoading(true);
 

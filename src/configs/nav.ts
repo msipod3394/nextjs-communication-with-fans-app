@@ -4,16 +4,16 @@ export const NavItem: NavConfig = {
   // ヘッダー
   mainNav: [
     {
-      title: "プロフィール",
-      href: "/profile",
+      title: "ABOUT",
+      href: "/about",
     },
     {
-      title: "イベント情報",
+      title: "EVENT",
       href: "/event",
     },
     {
-      title: "ポートフォリオ",
-      href: "/portfolio",
+      title: "WORKS",
+      href: "/works",
     },
     {
       title: "サブスク登録",
