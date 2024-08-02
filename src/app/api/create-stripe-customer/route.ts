@@ -6,9 +6,18 @@ import Stripe from "stripe";
 
 export async function POST(req: NextRequest) {
   try {
+    // API呼び出しが適切なシークレットキーを含んでいるかどうかを確認
+    const query = req.nextUrl.searchParams.get("API_ROUTE_SECRET");
+    if (query !== process.env.API_ROUTE_SECRET) {
+      return NextResponse.json({
+        message: "APIを叩く権限がありません",
+      });
+    }
+
     /**
      * stripeに顧客データを作成
      */
+    // リクエストデータを取得
     const data = await req.json();
     const { email } = data;
 
