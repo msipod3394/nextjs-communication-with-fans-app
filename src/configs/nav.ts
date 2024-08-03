@@ -4,21 +4,21 @@ export const NavItem: NavConfig = {
   // ヘッダー
   mainNav: [
     {
-      title: "ABOUT",
+      title: "About",
       href: "/about",
     },
     {
-      title: "EVENT",
+      title: "Event",
       href: "/event",
     },
     {
-      title: "WORKS",
+      title: "Works",
       href: "/works",
     },
     {
-      title: "サブスク登録",
-      href: "/subscribe",
-      disabled: true,
+      title: "Funs",
+      href: "/funs",
+      // disabled: true,
     },
   ],
   // ダッシュボード
