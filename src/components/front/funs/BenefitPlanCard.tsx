@@ -47,7 +47,7 @@ export const BenefitPlanCard = ({ plan, benefits }: BenefitPlanCardProps) => {
         </CardContent>
       </div>
       <CardFooter>
-        <Button className="w-full">ファンクラブの登録に進む</Button>
+        <Button className="w-full">ファンクラブ登録</Button>
       </CardFooter>
     </Card>
   );
