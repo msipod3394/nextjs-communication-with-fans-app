@@ -6,6 +6,11 @@ export const getUserData = async () => {
   // ユーザーセッションの取得
   const user = await getUserCurrent();
 
+  if (!user || !user.email) {
+    console.error("ユーザーの取得に失敗しました");
+    return null;
+  }
+
   // セッションIDから
   const supabaseUser = await db.user.findUnique({
     where: { email: user.email },

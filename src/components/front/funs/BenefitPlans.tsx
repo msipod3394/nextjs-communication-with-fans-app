@@ -1,6 +1,6 @@
 import { getBenefitsByPlan } from "@/configs/funsBenefits";
 import { Plan } from "@/types/Plan";
-import { BenefitPlanCard } from "./BenefitPlanCard";
+import { BenefitPlanCard } from "./PlanCard";
 
 type BenefitPlansProps = {
   plans: Plan[];
