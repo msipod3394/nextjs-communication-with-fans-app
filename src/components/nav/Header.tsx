@@ -1,23 +1,18 @@
-import { buttonVariants } from "@/components/ui/button";
 import { NavItem } from "@/configs/nav";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import MainNav from "./MainNav";
+import { AuthOptions } from "@/lib/auth/AuthOptions";
+import { getServerSession } from "next-auth";
+import { MainNav } from "./MainNav";
+import { UserNav } from "./UserNav";
 
-export default function Header() {
+export default async function Header() {
+  // セッション取得
+  const session = await getServerSession(AuthOptions);
+
   return (
     <header className="z-40 bg-background px-6">
-      <div className="flex h-20 py-6 justify-between">
+      <div className="flex h-20 py-6 justify-between items-center">
         <MainNav items={NavItem.mainNav} />
-        <Link
-          href={"/login"}
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "px-4 font-bold text-sm"
-          )}
-        >
-          ログイン
-        </Link>
+        <UserNav items={NavItem.userNav} session={session} />
       </div>
     </header>
   );

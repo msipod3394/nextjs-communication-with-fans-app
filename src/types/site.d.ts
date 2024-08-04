@@ -15,6 +15,8 @@ export type NavItem = {
   href: string;
   icon?: string;
   disabled?: boolean;
+  onClick?: () => void;
+  variant?: string;
 };
 
 export type NavConfig = {

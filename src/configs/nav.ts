@@ -18,6 +18,27 @@ export const NavItem: NavConfig = {
       // disabled: true,
     },
   ],
+  // ログイン状態に基づくユーザーナビ
+  userNav: {
+    isLogin: [
+      {
+        title: "ダッシュボード",
+        href: "/dashboard",
+      },
+      {
+        title: "ログアウト",
+        href: "/dashboard",
+        variant: "secondary",
+      },
+    ],
+    isNotLogin: [
+      {
+        title: "ログイン",
+        href: "/login",
+        variant: "secondary",
+      },
+    ],
+  },
   // ダッシュボード
   dashboardNav: [
     {

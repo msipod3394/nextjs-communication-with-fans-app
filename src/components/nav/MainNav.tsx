@@ -11,7 +11,7 @@ type MainNavProps = {
   children?: ReactNode;
 };
 
-export default function MainNav({ items }: MainNavProps) {
+export const  MainNav = ({ items }: MainNavProps) => {
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
