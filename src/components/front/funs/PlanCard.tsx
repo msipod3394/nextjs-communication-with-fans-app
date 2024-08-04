@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,23 +7,40 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getBenefitsByPlan } from "@/configs/funsBenefits";
+import { Plan } from "@/types/Plan";
 import { BenefitItem } from "./BenefitItem";
+import { SubscriptionButton } from "./SubscriptionButton";
+
+type PlanCardProps = {
+  plan: Plan;
+  showSubscribeButton: boolean;
+  showManageSubscriptionButton: boolean;
+  showCreateAccountButton: boolean;
+};
 
 export const PlanCard = ({
   plan,
   showSubscribeButton,
   showManageSubscriptionButton,
   showCreateAccountButton,
-}) => {
+}: PlanCardProps) => {
   const filteredBenefits = getBenefitsByPlan(plan.name.toLowerCase());
+
+  // 表記を日本語化
+  let interval;
+  if (plan.interval === "month") {
+    interval = "月";
+  } else if (plan.interval === "year") {
+    interval = "年";
+  }
 
   return (
     <Card key={plan.id} className="flex flex-col justify-between">
       <div>
-        <CardHeader>
+        <CardHeader className="grid gap-1">
           <CardTitle>{plan.name}</CardTitle>
-          <CardDescription>
-            {plan.amount} {plan.currency}/{plan.interval}
+          <CardDescription className="text-md text-bold">
+            {interval}額 {plan.price} 円
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -34,17 +50,12 @@ export const PlanCard = ({
         </CardContent>
       </div>
       <CardFooter>
-        <div className="mt-4">
-          {showSubscribeButton && (
-            <Button className="w-full">サブスクリプション登録</Button>
-          )}
-          {showManageSubscriptionButton && (
-            <Button className="w-full">サブスクリプション管理</Button>
-          )}
-          {showCreateAccountButton && (
-            <Button className="w-full">ログイン</Button>
-          )}
-        </div>
+        <SubscriptionButton
+          planId={plan.id}
+          showSubscribeButton={showSubscribeButton}
+          showManageSubscriptionButton={showManageSubscriptionButton}
+          showCreateAccountButton={showCreateAccountButton}
+        />
       </CardFooter>
     </Card>
   );

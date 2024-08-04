@@ -29,10 +29,6 @@ export async function POST(req: NextRequest) {
     // セッション取得
     const session = await getServerSession(AuthOptions);
 
-    /**
-     * supabaseにstripe顧客idを追加
-     */
-
     // セッションがなければ、403エラーを返す
     if (!session) {
       return NextResponse.json("アクセス権限がありません", { status: 403 });
@@ -40,6 +36,10 @@ export async function POST(req: NextRequest) {
 
     // セッションからuserを取り出す
     const { user } = session;
+
+    /**
+     * supabaseにstripe顧客idを追加
+     */
 
     // 顧客データ作成
     const customer = await stripe.customers.create({ email: user.email });

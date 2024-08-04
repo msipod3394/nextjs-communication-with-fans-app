@@ -30,7 +30,7 @@ export default async function FunsPage() {
         heading="Funs"
         description="もっと見たい・応援したいあなたへ"
       />
-      <div className="mt-8 flex flex-row gap-8">
+      <div className="mt-16 flex flex-row gap-8 justify-center">
         {plans.map((plan) => (
           <PlanCard
             key={plan.id}

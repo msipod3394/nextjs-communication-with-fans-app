@@ -71,7 +71,6 @@ model User {
   stripeCurrentPeriodEnd  String?  @unique  @map(name:"stripe_current_period_end")
 
   @@map(name:"users")
-
 }
 
 model VerificationRequest {
