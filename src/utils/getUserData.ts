@@ -19,6 +19,7 @@ export const getUserData = async () => {
       email: true,
       isSubscribed: true,
       stripeCustomerId: true,
+      stripeSubscriptionId: true,
     },
   });
 

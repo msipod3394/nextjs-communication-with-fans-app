@@ -51,7 +51,7 @@ export default function RootLayout({
           fontNotoSansJP.className
         )}
       >
-        <div className="flex min-h-screen w-screen flex-col">
+        <div className="flex min-h-screen w-full flex-col">
           <Header />
           <hr className="border-t" />
           {children}

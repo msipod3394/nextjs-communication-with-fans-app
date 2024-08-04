@@ -31,8 +31,8 @@ export async function GET(
         quantity: 1,
       },
     ],
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/funs/success/`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/funs/canceled/`,
+    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/success/`,
+    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/canceled/`,
   });
 
   return NextResponse.json({ id: session.id });

@@ -9,7 +9,7 @@ export default function EditorLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen w-screen flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <hr className="border-t" />
       <div className="container grid flex-1 gap-12 md:grid-cols-[240px_1fr] py-12">

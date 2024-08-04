@@ -1,4 +1,4 @@
-import { Benefit } from "@/configs/funsBenefits";
+import { Benefit } from "@/configs/membershipBenefits";
 
 export const BenefitItem = ({ benefit }: { benefit: Benefit }) => (
   <div className="mb-4 grid grid-cols-[24px_1fr] items-start last:mb-0 last:pb-0">

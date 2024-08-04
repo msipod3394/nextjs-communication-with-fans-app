@@ -1,10 +1,11 @@
 import { FrontHeading } from "@/components/dashboard/FrontHeading";
-import { PlanCard } from "@/components/front/funs/PlanCard";
+import { PlanCard } from "@/components/front/membership/PlanCard";
+import { SubscriptionButton } from "@/components/front/membership/SubscriptionButton";
 import { getUserCurrent } from "@/lib/session";
 import { getAllPlans } from "@/utils/getAllPlans";
 import { getUserData } from "@/utils/getUserData";
 
-export default async function FunsPage() {
+export default async function MembershipPage() {
   const [plans, session, user] = await Promise.all([
     // プラン情報の取得
     getAllPlans(),
@@ -27,18 +28,19 @@ export default async function FunsPage() {
   return (
     <div>
       <FrontHeading
-        heading="Funs"
+        heading="Membership"
         description="もっと見たい・応援したいあなたへ"
       />
       <div className="mt-16 flex flex-row gap-8 justify-center">
         {plans.map((plan) => (
-          <PlanCard
-            key={plan.id}
-            plan={plan}
-            showSubscribeButton={showSubscribeButton}
-            showManageSubscriptionButton={showManageSubscriptionButton}
-            showCreateAccountButton={showCreateAccountButton}
-          />
+          <PlanCard key={plan.id} plan={plan}>
+            <SubscriptionButton
+              planId={plan.id}
+              showSubscribeButton={showSubscribeButton}
+              showManageSubscriptionButton={showManageSubscriptionButton}
+              showCreateAccountButton={showCreateAccountButton}
+            />
+          </PlanCard>
         ))}
       </div>
     </div>

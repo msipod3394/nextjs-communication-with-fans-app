@@ -4,20 +4,17 @@ export const NavItem: NavConfig = {
   // ヘッダー
   mainNav: [
     {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Event",
-      href: "/event",
-    },
-    {
       title: "Works",
       href: "/works",
     },
     {
-      title: "Funs",
-      href: "/funs",
+      title: "Membership",
+      href: "/membership",
+      // disabled: true,
+    },
+    {
+      title: "Contact",
+      href: "/contact",
       // disabled: true,
     },
   ],

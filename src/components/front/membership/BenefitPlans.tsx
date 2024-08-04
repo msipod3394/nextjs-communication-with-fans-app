@@ -1,4 +1,4 @@
-import { getBenefitsByPlan } from "@/configs/funsBenefits";
+import { getBenefitsByPlan } from "@/configs/membershipBenefits";
 import { Plan } from "@/types/Plan";
 import { BenefitPlanCard } from "./PlanCard";
 

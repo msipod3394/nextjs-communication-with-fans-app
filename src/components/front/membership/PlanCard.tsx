@@ -6,24 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getBenefitsByPlan } from "@/configs/funsBenefits";
+import { getBenefitsByPlan } from "@/configs/membershipBenefits";
 import { Plan } from "@/types/Plan";
 import { BenefitItem } from "./BenefitItem";
-import { SubscriptionButton } from "./SubscriptionButton";
 
 type PlanCardProps = {
   plan: Plan;
-  showSubscribeButton: boolean;
-  showManageSubscriptionButton: boolean;
-  showCreateAccountButton: boolean;
+  children: ReactNode;
 };
 
-export const PlanCard = ({
-  plan,
-  showSubscribeButton,
-  showManageSubscriptionButton,
-  showCreateAccountButton,
-}: PlanCardProps) => {
+export const PlanCard = ({ plan, children }: PlanCardProps) => {
   const filteredBenefits = getBenefitsByPlan(plan.name.toLowerCase());
 
   // 表記を日本語化
@@ -49,14 +41,7 @@ export const PlanCard = ({
           ))}
         </CardContent>
       </div>
-      <CardFooter>
-        <SubscriptionButton
-          planId={plan.id}
-          showSubscribeButton={showSubscribeButton}
-          showManageSubscriptionButton={showManageSubscriptionButton}
-          showCreateAccountButton={showCreateAccountButton}
-        />
-      </CardFooter>
+      <CardFooter>{children}</CardFooter>
     </Card>
   );
 };
