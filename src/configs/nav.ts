@@ -18,27 +18,13 @@ export const NavItem: NavConfig = {
       // disabled: true,
     },
   ],
-  // ログイン状態に基づくユーザーナビ
-  userNav: {
-    isLogin: [
-      {
-        title: "ダッシュボード",
-        href: "/dashboard",
-      },
-      {
-        title: "ログアウト",
-        href: "/dashboard",
-        variant: "secondary",
-      },
-    ],
-    isNotLogin: [
-      {
-        title: "ログイン",
-        href: "/login",
-        variant: "secondary",
-      },
-    ],
-  },
+  // ログインユーザーのみ表示
+  loginUserNav: [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+    },
+  ],
   // ダッシュボード
   dashboardNav: [
     {
@@ -47,7 +33,7 @@ export const NavItem: NavConfig = {
       icon: "post",
     },
     {
-      title: "サブスクリプション管理",
+      title: "メンバーシップ管理",
       href: "/subscribe",
       icon: "billing",
     },

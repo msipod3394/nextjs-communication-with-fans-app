@@ -7,13 +7,13 @@ export default async function SuccessPage() {
     <div>
       <FrontHeading
         heading="Welcome FunClub"
-        description="サブスクリプションの登録が完了しました！"
+        description="メンバーシップの登録が完了しました！"
       />
 
       <div className="mt-16 grid gap-4 w-20">
         <Button>プレミアムコンテンツを見る</Button>
         <Button>
-          <Link href={"/subscribe"}>サブスクリプション管理</Link>
+          <Link href={"/subscribe"}>メンバーシップ管理</Link>
         </Button>
       </div>
     </div>

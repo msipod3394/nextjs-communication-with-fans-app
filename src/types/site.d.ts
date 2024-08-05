@@ -15,8 +15,7 @@ export type NavItem = {
   href: string;
   icon?: string;
   disabled?: boolean;
-  onClick?: () => void;
-  variant?: string;
+  islogin?: boolean;
 };
 
 export type NavConfig = {

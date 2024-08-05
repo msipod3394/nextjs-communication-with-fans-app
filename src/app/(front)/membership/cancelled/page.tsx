@@ -5,9 +5,8 @@ export default async function CancelledPage() {
     <div>
       <FrontHeading
         heading="Cancel Subscription"
-        description="サブスクリプションの登録が解除されました。"
+        description="メンバーシップの登録が解除されました。"
       />
-      
     </div>
   );
 }

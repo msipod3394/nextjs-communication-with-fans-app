@@ -14,7 +14,7 @@ export default async function MembershipPage() {
     // ユーザーデータの取得
     getUserData(),
   ]);
-  // console.log(user);
+  console.log(session, user);
 
   // セッションが存在している & サブスク契約している場合
   const showManageSubscriptionButton = !!session && !!user?.isSubscribed;
@@ -36,6 +36,7 @@ export default async function MembershipPage() {
           <PlanCard key={plan.id} plan={plan}>
             <SubscriptionButton
               planId={plan.id}
+              user={user}
               showSubscribeButton={showSubscribeButton}
               showManageSubscriptionButton={showManageSubscriptionButton}
               showCreateAccountButton={showCreateAccountButton}

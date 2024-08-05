@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         const customerSubscriptionCreated = event.data.object;
 
         // userテーブル更新
-        const supabaseUser = await db.user.update({
+        await db.user.update({
           where: { stripeCustomerId: event.data.object.customer },
           data: {
             isSubscribed: true,
@@ -48,14 +48,14 @@ export async function POST(req: NextRequest) {
         console.log("customer.subscription.deleted");
         const customerSubscriptionDeleted = event.data.object;
 
-        // // userテーブルのサブスク状態を true に変更
-        // const supabaseUser = await db.user.update({
-        //   where: { id: user.id },
-        //   data: {
-        //     isSubscribed: false,
-        //     // subscriptionPlan:customerSubscriptionCreated.items.data[0].plan
-        //   },
-        // });
+        // userテーブルのサブスク状態を false に変更
+        await db.user.update({
+          where: { stripeCustomerId: customerSubscriptionDeleted.customer },
+          data: {
+            isSubscribed: false,
+            stripeSubscriptionId: null,
+          },
+        });
 
         break;
 
@@ -64,19 +64,30 @@ export async function POST(req: NextRequest) {
         console.log("customer.subscription.updated");
         const customerSubscriptionUpdated = event.data.object;
 
-        // // userテーブルのサブスク状態を true に変更
-        // const supabaseUser = await db.user.update({
-        //   where: { id: user.id },
-        //   data: { isSubscribed: false },
-        // });
-
-        break;
-
+        if (customerSubscriptionUpdated.status === "canceled") {
+          await db.user.update({
+            where: { stripeCustomerId: customerSubscriptionDeleted.customer },
+            data: {
+              isSubscribed: false,
+              stripeSubscriptionId: null,
+            },
+          });
+          break;
+        } else {
+          // userテーブルのサブスク状態を true に変更
+          await db.user.update({
+            where: { stripeCustomerId: customerSubscriptionUpdated.customer },
+            data: {
+              isSubscribed: true,
+              stripeSubscriptionId:
+                customerSubscriptionUpdated.items.data[0].plan.id,
+            },
+          });
+          break;
+        }
       default:
-        console.log(`Unhandled event type ${event.type}`);
+      // console.log(`${event.type}`);
     }
-
-    console.log("event", event);
     return NextResponse.json({ received: true });
   } catch (err: any) {
     return NextResponse.json(`Webhook Error: ${err.message}`, { status: 401 });

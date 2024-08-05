@@ -1,6 +1,8 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { NavItem } from "@/types/site";
 import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 
@@ -24,9 +26,14 @@ export const UserNav = ({ items, session }: UserNavProps) => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    buttonVariants({ variant: `${item.variant}`, size: "sm" }),
+                    buttonVariants({ variant: item.variant, size: "sm" }),
                     "px-4 font-bold text-sm"
                   )}
+                  onClick={() => {
+                    if (item.title === "Logout") {
+                      signOut();
+                    }
+                  }}
                 >
                   {item.title}
                 </Link>
@@ -42,7 +49,7 @@ export const UserNav = ({ items, session }: UserNavProps) => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    buttonVariants({ variant: `${item.variant}`, size: "sm" }),
+                    buttonVariants({ variant: item.variant, size: "sm" }),
                     "px-4 font-bold text-sm"
                   )}
                 >

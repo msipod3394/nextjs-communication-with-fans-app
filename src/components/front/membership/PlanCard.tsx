@@ -13,9 +13,10 @@ import { BenefitItem } from "./BenefitItem";
 type PlanCardProps = {
   plan: Plan;
   children: ReactNode;
+  className?: string;
 };
 
-export const PlanCard = ({ plan, children }: PlanCardProps) => {
+export const PlanCard = ({ plan, children, className }: PlanCardProps) => {
   const filteredBenefits = getBenefitsByPlan(plan.name.toLowerCase());
 
   // 表記を日本語化
@@ -27,7 +28,10 @@ export const PlanCard = ({ plan, children }: PlanCardProps) => {
   }
 
   return (
-    <Card key={plan.id} className="flex flex-col justify-between">
+    <Card
+      key={plan.id}
+      className={`flex flex-col justify-between ${className}`}
+    >
       <div>
         <CardHeader className="grid gap-1">
           <CardTitle>{plan.name}</CardTitle>
