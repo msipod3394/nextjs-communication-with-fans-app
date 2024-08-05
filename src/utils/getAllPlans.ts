@@ -1,4 +1,4 @@
-import { Plan } from "@/types/Plan";
+import { Plan } from "@/types/plan";
 import Stripe from "stripe";
 
 // Stripeから商品情報を取得

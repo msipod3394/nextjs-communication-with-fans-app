@@ -1,5 +1,5 @@
 import { getBenefitsByPlan } from "@/configs/membershipBenefits";
-import { Plan } from "@/types/Plan";
+import { Plan } from "@/types/plan";
 import { BenefitPlanCard } from "./PlanCard";
 
 type BenefitPlansProps = {

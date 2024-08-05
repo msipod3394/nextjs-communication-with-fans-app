@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getBenefitsByPlan } from "@/configs/membershipBenefits";
-import { Plan } from "@/types/Plan";
+import { Plan } from "@/types/plan";
 import { BenefitItem } from "./BenefitItem";
 
 type PlanCardProps = {
