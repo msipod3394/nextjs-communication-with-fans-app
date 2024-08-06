@@ -1,4 +1,4 @@
-type Photo = {
+export type Image = {
   url: string;
   width: number;
   height: number;
@@ -15,8 +15,8 @@ export type Content = {
   shooting_date: string;
   anime_title: string;
   anime_character: string;
-  photo_default: Photo[];
-  photo_premium: Photo[];
+  photo_default: Image[];
+  photo_premium: Image[];
 };
 
 export type ContentList = {

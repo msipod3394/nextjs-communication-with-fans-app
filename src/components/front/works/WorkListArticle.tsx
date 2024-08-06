@@ -14,11 +14,11 @@ export const WorkListArticle = ({ content }: WorkListArticleProps) => {
         <div className="h-full w-full transition-transform duration-300 ease-in-out group-hover:scale-110">
           <Image
             src={content.photo_default[0].url}
-            layout="fill"
+            fill
             objectFit="cover"
             objectPosition="top"
-            alt={content.title}
             className="object-cover"
+            alt={content.title}
           />
         </div>
       </div>

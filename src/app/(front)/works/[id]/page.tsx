@@ -1,3 +1,4 @@
+import { WorkImages } from "@/components/front/works/WorkImages";
 import { Icon } from "@/components/icon/icon";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { microcmsClient } from "@/lib/microcmsClient";
@@ -91,18 +92,7 @@ export default async function WorksDetailPage({ params }: Params) {
             </h2>
             <div className="mt-8">
               {isShowPremium ? (
-                <ul className="grid gap-10 my-12 sm:grid-cols-2 md:grid-cols-3">
-                  {content.photo_premium.map((photo, index) => (
-                    <li key={index}>
-                      <Image
-                        src={photo.url}
-                        width={photo.width}
-                        height={photo.height}
-                        alt={`${content.title} Photo${index + 1}`}
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <WorkImages items={content.photo_premium} />
               ) : (
                 <div className="grid gap-8">
                   <p>
@@ -111,7 +101,7 @@ export default async function WorksDetailPage({ params }: Params) {
                     メンバーシップに登録することで、全てのコンテンツを閲覧することができます。
                   </p>
                   <Link href="/membership" passHref>
-                    <Button className="w-[220px] text-white hover:bg-gray-700">
+                    <Button className="w-[240px] text-white hover:bg-gray-700">
                       メンバーシップに登録する
                     </Button>
                   </Link>
@@ -124,10 +114,10 @@ export default async function WorksDetailPage({ params }: Params) {
       <div className="flex justify-center py-6 lg:py-10">
         <Link
           href="/works"
-          className={cn(buttonVariants({ variant: "ghost" }))}
+          className={cn(buttonVariants({ variant: "outline" }))}
         >
           <Icon.chevronLeft className="w-4 h-4 mr-2" />
-          Back
+          Back to Works
         </Link>
       </div>
     </>
