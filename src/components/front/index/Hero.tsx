@@ -1,5 +1,5 @@
-import styles from "@/styles/(front)/page.module.css";
 import ImageSlider from "./ImageSlider";
+import styles from "./index.module.scss";
 
 type HeroProps = {
   images: string[];
@@ -14,7 +14,10 @@ export const Hero = ({ images }: HeroProps) => {
       <div
         className={`absolute w-full z-40 sm:relative flex items-center justify-center overflow-hidden ${styles.heroHeight}`}
       >
-        <h1 className="font-heading text-center text-white text-4xl tracking-tighter font-bold sm:text-gray-800 sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1
+          className="font-heading text-center text-white text-4xl 
+         font-bold sm:text-gray-800 sm:text-5xl md:text-6xl lg:text-7xl"
+        >
           Cosplayer Portfolio
         </h1>
       </div>
