@@ -1,7 +1,8 @@
 import { Hero } from "@/components/front/index/Hero";
+import { News } from "@/components/front/index/News";
 import { Works } from "@/components/front/index/Works";
 import { microcmsClient } from "@/lib/microcmsClient";
-import { ContentList } from "@/types/works";
+import { NewsContentList, WorksContentList } from "@/types/cms";
 
 export default async function Home() {
   // スライダー画像取得
@@ -14,9 +15,17 @@ export default async function Home() {
   // urlのみ取り出す
   const images: string[] = data.contents[0].slider.map((image) => image.url);
 
-  const contentList: ContentList = await microcmsClient.get({
+  // works
+  const worksList: WorksContentList = await microcmsClient.get({
     endpoint: "works",
   });
+
+  // news
+  const newsList: NewsContentList = await microcmsClient.get({
+    endpoint: "news",
+  });
+
+  // console.log(newsList);
 
   return (
     <main className="">
@@ -24,11 +33,10 @@ export default async function Home() {
       <Hero images={images} />
 
       {/* News */}
-      <section id="news"></section>
+      <News contents={newsList.contents} />
 
       {/* Works */}
-      <Works contents={contentList.contents} />
-
+      <Works contents={worksList.contents} />
     </main>
   );
 }

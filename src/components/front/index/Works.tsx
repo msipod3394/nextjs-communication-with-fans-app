@@ -10,7 +10,7 @@ export const Works = ({ contents }: WorksProps) => {
   return (
     <section
       id="works"
-      className="space-y-12 bg-slate-50 py-8 dark:bg-transparent md:py-16 lg:py-40"
+      className="space-y-12 py-8 dark:bg-transparent md:py-16 lg:py-40"
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <h2 className="font-heading tracking-tighter font-bold text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
