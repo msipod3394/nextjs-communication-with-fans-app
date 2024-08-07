@@ -9,7 +9,7 @@ export default async function Header() {
   const session = await getServerSession(AuthOptions);
 
   return (
-    <header className="z-40 bg-background px-6">
+    <header className="z-40 bg-background px-6 fixed w-full z-40">
       <div className="flex h-20 py-6 justify-between items-center">
         <MainNav
           items={[NavItem.mainNav, NavItem.loginUserNav]}

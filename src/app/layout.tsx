@@ -6,6 +6,8 @@ import { siteConfig } from "@/configs/site";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 // メタデータ設定
 export const metadata: Metadata = {
