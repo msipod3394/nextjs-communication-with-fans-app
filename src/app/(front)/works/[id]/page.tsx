@@ -46,7 +46,7 @@ export default async function WorksDetailPage({ params }: Params) {
       <article className="grid gap-2">
         {/* 説明文 */}
         <section className="space-y-6">
-          <h1 className="font-heading border-b pb-6 font-semibold text-3xl leading-tight lg:text-4xl">
+          <h1 className="font-heading border-b border-gray-500 pb-8 font-semibold text-3xl leading-tight lg:text-4xl">
             {content.title}
           </h1>
           <div className="flex justify-end gap-4">

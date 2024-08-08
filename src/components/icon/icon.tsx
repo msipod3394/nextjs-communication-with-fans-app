@@ -16,6 +16,7 @@ import {
   Image,
   Laptop,
   Loader2,
+  MenuIcon,
   Moon,
   MoreVertical,
   Pizza,
@@ -49,6 +50,7 @@ export const Icon = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  menu: MenuIcon,
 
   // spinner
   // spinner: ({ w, h, ...props }) => (

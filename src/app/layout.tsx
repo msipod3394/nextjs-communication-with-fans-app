@@ -48,7 +48,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={cn("bg-back-ground antialiased", fontNotoSansJP.className)}
+        className={cn(
+          "bg-back-ground antialiased bg-black text-white dark",
+          fontNotoSansJP.className
+        )}
       >
         <div className="flex min-h-screen w-full flex-col">
           <Header />

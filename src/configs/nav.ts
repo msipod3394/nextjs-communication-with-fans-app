@@ -4,6 +4,10 @@ export const NavItem: NavConfig = {
   // ヘッダー
   mainNav: [
     {
+      title: "Top",
+      href: "/",
+    },
+    {
       title: "Works",
       href: "/works",
     },

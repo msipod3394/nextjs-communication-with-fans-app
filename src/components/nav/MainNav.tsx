@@ -3,6 +3,7 @@ import { NavItem } from "@/types/site";
 import { User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
+import { Icon } from "../icon/icon";
 import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
 
@@ -36,7 +37,11 @@ export const MainNav = ({ items, session }: MainNavProps) => {
             loginUserNav.map(
               (item) =>
                 !item.disabled && (
-                  <Link key={item.title} href={item.href} className="text-sm">
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="text-sm  text-black"
+                  >
                     {item.title}
                   </Link>
                 )
@@ -44,10 +49,10 @@ export const MainNav = ({ items, session }: MainNavProps) => {
         </div>
       </nav>
       <Button
-        className="md:hidden"
+        className="md:hidden w-10 h-10 p-0"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
-        <span>メニュー</span>
+        <Icon.menu className="w-full h-full bg-black text-white" />
       </Button>
       {/* モバイルメニュー表示 */}
       {showMobileMenu && (
