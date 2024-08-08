@@ -1,6 +1,5 @@
 import DashboardNav from "@/components/nav/DashboardNav";
 import Footer from "@/components/nav/Footer";
-import Header from "@/components/nav/Header";
 import { NavItem } from "@/configs/nav";
 
 export default function EditorLayout({
@@ -10,7 +9,6 @@ export default function EditorLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
       <hr className="border-t" />
       <div className="container grid flex-1 gap-12 md:grid-cols-[240px_1fr] py-12">
         <aside className="hidden md:flex w-[240px] flex-col border-r">

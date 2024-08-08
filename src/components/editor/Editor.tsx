@@ -137,7 +137,7 @@ export default function Editor({ post }: EditorProps) {
             {...register("title")}
             placeholder="タイトルを入力してください"
             defaultValue={post.title}
-            className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-800 leading-normal tracking-wide focus:outline-none border-b py-4"
+            className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           ></TextareaAutosize>
         </div>
         <div id="editor" className="min-h-[500px]"></div>
