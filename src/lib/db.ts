@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 // グローバルオブジェクトにcachePrismaを宣言
 declare global {
-  var cachePrisma = PrismaClient;
+  var cachePrisma: PrismaClient | undefined;
 }
 
 let prisma: PrismaClient;

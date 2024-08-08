@@ -1,6 +1,8 @@
 import Editor from "@/components/editor/Editor";
+import UploadImage from "@/components/editor/UploadImage";
 import { db } from "@/lib/db";
 import { getUserCurrent } from "@/lib/session";
+import { getUserData } from "@/utils/getUserData";
 import { User } from "@prisma/client";
 import { notFound, redirect } from "next/navigation";
 
@@ -20,14 +22,17 @@ interface EditorProps {
 }
 
 export default async function EditorPage({ params }: EditorProps) {
-  const user = await getUserCurrent();
-  const userId = user?.id;
+  const session = await getUserCurrent();
+  const user = await getUserData();
 
-  if (!user) {
+  if (!session || !user) {
     redirect("/login");
   }
 
+  const userId = user.id;
   const postId = params.postId;
+
+  // console.log(userId, postId);
 
   // 詳細記事の取得
   const post = await getPostForUser(postId, userId);
@@ -37,5 +42,10 @@ export default async function EditorPage({ params }: EditorProps) {
     notFound();
   }
 
-  return <Editor post={post} />;
+  return (
+    <>
+      <Editor post={post} />
+      <UploadImage userId={userId} postId={postId} />
+    </>
+  );
 }
