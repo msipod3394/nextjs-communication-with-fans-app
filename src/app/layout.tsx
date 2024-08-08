@@ -1,13 +1,13 @@
-import Footer from "@/components/nav/Footer";
+import styles from "@/components/front/index/index.module.scss";
 import Header from "@/components/nav/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { fontNotoSansJP } from "@/configs/font";
 import { siteConfig } from "@/configs/site";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import "./globals.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import "./globals.css";
 
 // メタデータ設定
 export const metadata: Metadata = {
@@ -53,8 +53,7 @@ export default function RootLayout({
         <div className="flex min-h-screen w-full flex-col">
           <Header />
           <hr className="border-t" />
-          {children}
-          <Footer />
+          <div className={`sm:mt-20 ${styles.mainHeight}`}>{children}</div>
         </div>
         <Toaster />
       </body>

@@ -1,5 +1,4 @@
 "use client";
-import { siteConfig } from "@/configs/site";
 import { NavItem } from "@/types/site";
 import { User } from "@prisma/client";
 import Link from "next/link";
@@ -21,11 +20,6 @@ export const MainNav = ({ items, session }: MainNavProps) => {
 
   return (
     <div className="flex items-center md:gap-8">
-      <Link href="/" className="hidden md:flex">
-        <span className="font-bold hidden sm:inline-block">
-          {siteConfig.name}
-        </span>
-      </Link>
       <nav className="md:flex gap-6 hidden justify-between">
         <div className="md:flex gap-6">
           {mainNav.map(

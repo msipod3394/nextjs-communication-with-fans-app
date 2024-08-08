@@ -5,7 +5,7 @@ export type Image = {
   height: number;
 };
 
-export type WorksContent = {
+export type WorksContents = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -18,29 +18,11 @@ export type WorksContent = {
   anime_character: string;
   photo_default: Image[];
   photo_premium: Image[];
+  is_show_top: boolean;
 };
 
-export type WorksContentList = {
-  contents: Worksontent[];
-  totalCount: number;
-  offset: number;
-  limit: number;
-};
-
-// News
-export type NewsContent = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  title: string;
-  contents: string;
-  post_date: string;
-};
-
-export type NewsContentList = {
-  contents: Newsontent[];
+export type WorksContentsList = {
+  contents: WorksContents[];
   totalCount: number;
   offset: number;
   limit: number;
