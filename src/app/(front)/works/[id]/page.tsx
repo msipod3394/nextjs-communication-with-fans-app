@@ -50,22 +50,29 @@ export default async function WorksDetailPage({ params }: Params) {
             {content.title}
           </h1>
           <div className="flex justify-end gap-4">
-            <p className="text-sm text-muted-foreground">
-              更新日：
-              <time
-                dateTime={format(new Date(content.createdAt), "yyyy-MM-dd")}
-              >
-                {format(new Date(content.createdAt), "yyyy/MM/dd")}
-              </time>
-            </p>
-            <p className="text-sm text-muted-foreground">
-              撮影日：
-              <time
-                dateTime={format(new Date(content.shooting_date), "yyyy-MM-dd")}
-              >
-                {format(new Date(content.shooting_date), "yyyy/MM/dd")}
-              </time>
-            </p>
+            {content.createdAt && (
+              <p className="text-sm text-muted-foreground">
+                更新日：
+                <time
+                  dateTime={format(new Date(content.createdAt), "yyyy-MM-dd")}
+                >
+                  {format(new Date(content.createdAt), "yyyy/MM/dd")}
+                </time>
+              </p>
+            )}
+            {content.shooting_date && (
+              <p className="text-sm text-muted-foreground">
+                撮影日：
+                <time
+                  dateTime={format(
+                    new Date(content.shooting_date),
+                    "yyyy-MM-dd"
+                  )}
+                >
+                  {format(new Date(content.shooting_date), "yyyy/MM/dd")}
+                </time>
+              </p>
+            )}
           </div>
           <p className="leading-7">{content.content}</p>
         </section>
@@ -87,27 +94,31 @@ export default async function WorksDetailPage({ params }: Params) {
             </ul>
           </div>
           <div>
-            <h2 className="inline-block font-heading font-semibold text-2xl leading-tight lg:text-3xl">
-              メンバーシップ限定
-            </h2>
-            <div className="mt-8">
-              {isShowPremium ? (
-                <WorkImages items={content.photo_premium} />
-              ) : (
-                <div className="grid gap-8">
-                  <p>
-                    こちらはメンバーシップ限定です。
-                    <br />
-                    メンバーシップに登録することで、全てのコンテンツを閲覧することができます。
-                  </p>
-                  <Link href="/membership" passHref>
-                    <Button className="w-[240px] text-white hover:bg-gray-700">
-                      メンバーシップに登録する
-                    </Button>
-                  </Link>
+            {content.photo_premium.length > 0 && (
+              <>
+                <h2 className="inline-block font-heading font-semibold text-2xl leading-tight lg:text-3xl">
+                  メンバーシップ限定
+                </h2>
+                <div className="mt-8">
+                  {isShowPremium ? (
+                    <WorkImages items={content.photo_premium} />
+                  ) : (
+                    <div className="grid gap-8">
+                      <p>
+                        こちらはメンバーシップ限定です。
+                        <br />
+                        メンバーシップに登録することで、全てのコンテンツを閲覧することができます。
+                      </p>
+                      <Link href="/membership" passHref>
+                        <Button className="w-[240px] text-white hover:bg-gray-700">
+                          メンバーシップに登録する
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </section>
       </article>

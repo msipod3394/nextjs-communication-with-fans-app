@@ -10,23 +10,31 @@ type WorkListArticleProps = {
 export const WorkListArticle = ({ content }: WorkListArticleProps) => {
   return (
     <article className="group relative flex flex-col space-y-4">
-      <div className="relative aspect-w-4 aspect-h-3 overflow-hidden">
-        <div className="h-full w-full transition-transform duration-300 ease-in-out group-hover:scale-110">
+      <div className="relative aspect-w-9 aspect-h-16 group">
+        <div className="absolute inset-0">
           <Image
             src={content.photo_default[0].url}
-            fill
+            alt={`${content.title}`}
+            layout="fill"
             objectFit="cover"
-            objectPosition="top"
-            className="object-cover"
-            alt={content.title}
+            className="transition-opacity duration-300 ease-in-out"
           />
         </div>
+        <Link
+          href={`/works/${content.id}`}
+          className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center"
+        >
+          <div className="flex flex-col gap-2 text-center">
+            <span className="block text-lg text-white transition-all duration-300 ease-in-out group-hover:tracking-widest">
+              View More
+            </span>
+          </div>
+        </Link>
       </div>
       <div className="space-y-2">
-        <h2 className="text-xl font-semibold">{content.title}</h2>
-        <p className="text-md text-muted-foreground">{content.content}</p>
+        <h2 className="text-md font-semibold">{content.title}</h2>
         <p className="text-sm text-muted-foreground">
-          {format(new Date(content.shooting_date), "yyyy/MM/dd")}
+          {format(new Date(content.createdAt), "yyyy/MM/dd")}
         </p>
       </div>
       <Link className="absolute inset-0" href={`/works/${content.id}`}>
