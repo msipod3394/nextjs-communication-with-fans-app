@@ -63,6 +63,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Post          Post[]
+  images        Images[]
 
   // 決済に関するスキーマ
   stripeCustomerId        String?  @unique  @map(name:"stripe_customer_id")
@@ -93,7 +94,8 @@ model Post {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   authorId  String
 
-  author User @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+  images    Images[]
 
   @@map(name: "posts")
 }
@@ -125,14 +127,16 @@ model Premium {
   @@map(name: "premiums")
 }
 
-// プレミアムコンテンツ管理
-// model Premium {
-//   id        String   @id @default(cuid()) // 主キー設定
-//   title     String
-//   content   String
-//   published Boolean  @default(false)
-//   createdAt DateTime @default(now()) @map(name: "created_at")
-//   updatedAt DateTime @default(now()) @map(name: "updated_at")
+// 画像投稿
+model Images {
+  id        String   @id @default(cuid()) // 主キー設定
+  userId    String
+  postId    String   
+  imageUrl  String   
+  createdAt DateTime @default(now()) @map(name: "created_at")
 
-//   @@map(name: "premiums")
-// }
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+
+  @@map(name: "images")
+}
