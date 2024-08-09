@@ -51,9 +51,53 @@ export default function UploadImage({
     fetchImages();
   }, [userId, postId]);
 
+  // ファイル選択
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
+    }
+  };
+
+  // 画像削除
+  const handleDelete = async (imageUrl: string) => {
+    setLoading(true);
+    const filePath = imageUrl.replace(public_url, "");
+
+    try {
+      // Supabase ストレージから画像を削除
+      const { error: deleteError } = await supabase.storage
+        .from("public-image-bucket")
+        .remove([filePath]);
+
+      if (deleteError) {
+        throw new Error(deleteError.message);
+      }
+
+      // `images` テーブルから画像情報を削除
+      const { error: deleteDbError } = await supabase
+        .from("images")
+        .delete()
+        .eq("imageUrl", imageUrl);
+
+      if (deleteDbError) {
+        throw new Error(deleteDbError.message);
+      }
+
+      // 画像リストを再取得
+      fetchImages();
+      toast({
+        title: "削除しました",
+        description: "画像が正常に削除されました。",
+      });
+    } catch (error) {
+      console.error("削除中にエラーが発生しました:", error);
+      toast({
+        title: "削除エラー",
+        description: "画像の削除中にエラーが発生しました。",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -165,7 +209,7 @@ export default function UploadImage({
       </form>
       <ul className="grid gap-10 my-12 sm:grid-cols-2 md:grid-cols-3">
         {urlList.map((item) => (
-          <li key={item} className="group relative flex flex-col space-y-4">
+          <li key={item} className="group relative flex flex-col">
             <div className="relative aspect-w-9 aspect-h-16 group">
               <div className="absolute inset-0">
                 <Image
@@ -177,6 +221,12 @@ export default function UploadImage({
                 />
               </div>
             </div>
+            <button
+              className="w-8 h-8 absolute top-1 right-1 bg-gray-800 rounded-full flex justify-center items-center transition-opacity duration-300 ease-in-out hover:opacity-50"
+              onClick={() => handleDelete(item)}
+            >
+              <Icon.close className="w-5 h-5 text-gray-200" />
+            </button>
           </li>
         ))}
       </ul>
