@@ -10,7 +10,7 @@ type WorkListArticleProps = {
 export const WorkListArticle = ({ content }: WorkListArticleProps) => {
   return (
     <article className="group relative flex flex-col space-y-4">
-      <div className="relative aspect-w-9 aspect-h-16 group">
+      <div className="relative aspect-w-9 aspect-h-16 sm:aspect-w-9 sm:aspect-h-16 group">
         <div className="absolute inset-0">
           <Image
             src={content.photo_default[0].url}
@@ -32,7 +32,7 @@ export const WorkListArticle = ({ content }: WorkListArticleProps) => {
         </Link>
       </div>
       <div className="space-y-2">
-        <h2 className="text-md font-semibold">{content.title}</h2>
+        <h2 className="text-sm sm:text-md font-semibold">{content.title}</h2>
         <p className="text-sm text-muted-foreground">
           {format(new Date(content.createdAt), "yyyy/MM/dd")}
         </p>

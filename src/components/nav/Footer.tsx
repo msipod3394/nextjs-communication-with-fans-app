@@ -15,15 +15,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full gap-8 my-8 px-8 flex flex-col sm:flex-row items-center justify-between">
+    <footer className="w-full gap-8 mb-8 pt-8 px-8 flex flex-col sm:flex-row items-center justify-between border-t">
       <SnsList snsList={snsList} />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-8 md:gap-4">
         <p
           className="text-left text-xs"
           dangerouslySetInnerHTML={{ __html: siteConfig.footer.caution }}
         />
         <p
-          className="text-left text-xs"
+          className="text-center md:text-right text-xs"
           dangerouslySetInnerHTML={{ __html: siteConfig.footer.copyright }}
         />
       </div>

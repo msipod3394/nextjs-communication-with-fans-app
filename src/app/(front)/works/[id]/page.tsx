@@ -45,10 +45,11 @@ export default async function WorksDetailPage({ params }: Params) {
     <>
       <article className="grid gap-2">
         {/* 説明文 */}
-        <section className="space-y-6">
-          <h1 className="font-heading border-b border-gray-500 pb-8 font-semibold text-3xl leading-tight lg:text-4xl">
+        <section className="space-y-4">
+          <h1 className="font-heading border-b border-gray-500 pb-4 font-semibold text-xl leading-tight md:text-4xl">
             {content.title}
           </h1>
+          {/* 更新・撮影日 */}
           <div className="flex justify-end gap-4">
             {content.createdAt && (
               <p className="text-sm text-muted-foreground">
@@ -74,10 +75,10 @@ export default async function WorksDetailPage({ params }: Params) {
               </p>
             )}
           </div>
-          <p className="leading-7">{content.content}</p>
+          <p className="text-sm leading-normal md:text-md">{content.content}</p>
         </section>
         {/* 画像 */}
-        <section className="space-y-8">
+        <section className="space-y-16 sm:space-y-24">
           <div>
             <ul className="grid gap-10 my-12 sm:grid-cols-2 md:grid-cols-3">
               {content.photo_default.map((photo, index) => (
@@ -96,21 +97,19 @@ export default async function WorksDetailPage({ params }: Params) {
           <div>
             {content.photo_premium.length > 0 && (
               <>
-                <h2 className="inline-block font-heading font-semibold text-2xl leading-tight lg:text-3xl">
+                <h2 className="font-heading border-b border-gray-500 pb-4 font-semibold text-xl leading-tight md:text-2xl">
                   メンバーシップ限定
                 </h2>
                 <div className="mt-8">
                   {isShowPremium ? (
                     <WorkImages items={content.photo_premium} />
                   ) : (
-                    <div className="grid gap-8">
+                    <div className="grid gap-8 text-sm md:text-md">
                       <p>
-                        こちらはメンバーシップ限定です。
-                        <br />
                         メンバーシップに登録することで、全てのコンテンツを閲覧することができます。
                       </p>
                       <Link href="/membership" passHref>
-                        <Button className="w-[240px] text-white hover:bg-gray-700">
+                        <Button className="w-[240px]">
                           メンバーシップに登録する
                         </Button>
                       </Link>
@@ -122,7 +121,7 @@ export default async function WorksDetailPage({ params }: Params) {
           </div>
         </section>
       </article>
-      <div className="flex justify-center py-6 lg:py-10">
+      <div className="mt-8 flex justify-center py-6 lg:py-10">
         <Link
           href="/works"
           className={cn(buttonVariants({ variant: "outline" }))}

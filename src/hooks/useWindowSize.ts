@@ -1,7 +1,7 @@
 import debounce from "lodash.debounce";
 import { useEffect, useState } from "react";
 
-export const breakpoint = 768; // 固定のブレイクポイント
+export const breakpoint = 768;
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -10,13 +10,12 @@ export const useWindowSize = () => {
   });
 
   useEffect(() => {
-    // デバウンスされたリサイズハンドラ
     const handleResize = debounce(() => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }, 200); // 200ms の遅延
+    }, 200);
 
     // 初回レンダリング時にサイズを設定
     handleResize();

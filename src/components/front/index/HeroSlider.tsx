@@ -14,17 +14,18 @@ type HeroSliderProps = {
 };
 
 export const HeroSlider = ({ contents }: HeroSliderProps) => {
-  const sliderRef = useRef(null);
+  // ウィンドウサイズ判定
   const { isDesktop } = useWindowSize();
-  const [isClient, setIsClient] = useState(false);
 
   // クライアントサイドでのみレンダリングを行う
   // メモ：コンポーネントがサーバーサイドでのレンダリング中に実行しないようにする
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // ホイール操作でスライド移動を可能に
+  // ホイール操作でスライド移動できるように
+  const sliderRef = useRef(null);
   const handleWheel = useCallback((event) => {
     if (sliderRef.current) {
       if (event.deltaY > 0) {
@@ -40,6 +41,9 @@ export const HeroSlider = ({ contents }: HeroSliderProps) => {
     return null;
   }
 
+  // 最新6件まで
+  const limit = 6;
+
   return (
     <div
       className={`w-full overflow-hidden sm: ${styles.mainHeight}`}
@@ -50,7 +54,7 @@ export const HeroSlider = ({ contents }: HeroSliderProps) => {
         {...(isDesktop ? settingsDesktop : settingsMobile)}
       >
         {contents
-          .slice(0, 6)
+          .slice(0, limit)
           .map((content) =>
             content.is_show_top ? (
               <HeroSliderItem key={content.id} content={content} />

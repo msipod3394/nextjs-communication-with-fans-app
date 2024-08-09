@@ -3,7 +3,7 @@ import { microcmsClient } from "@/lib/microcmsClient";
 import { WorksContentsList } from "@/types/cms";
 
 export default async function Home() {
-  // works
+  // microCMSからworksを呼び出し
   const worksList: WorksContentsList = await microcmsClient.get({
     endpoint: "works",
   });

@@ -57,7 +57,7 @@ export default function RootLayout({
         <div className="flex min-h-screen w-full flex-col">
           <Header />
           <hr className="border-t" />
-          <div className={`sm:mt-20 ${styles.mainHeight}`}>{children}</div>
+          <div className={`mt-16 sm:mt-20 ${styles.mainHeight}`}>{children}</div>
           <Footer />
         </div>
         <Toaster />

@@ -5,7 +5,7 @@ export default function FrontLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col w-full">
-      <div className="container py-12">
+      <div className="container py-8 sm:py-12">
         <main>{children}</main>
       </div>
     </div>
