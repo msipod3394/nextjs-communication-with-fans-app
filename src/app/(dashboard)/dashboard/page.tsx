@@ -9,7 +9,6 @@ import { redirect } from "next/dist/server/api-utils";
 export default async function DashboardPage() {
   // ユーザーセッションの取得
   const user = await getUserCurrent();
-  // console.log(user);
 
   // ユーザー情報がなければ、リダイレクト
   if (!user) {

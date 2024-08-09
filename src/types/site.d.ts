@@ -1,12 +1,16 @@
 export type SiteConfig = {
   name: string;
   description: string;
-  keywords: Array[string];
+  keywords: string[];
   url: string;
   og: string;
   links: {
     x: string;
     github: string;
+  };
+  footer: {
+    caution: string;
+    copyright: string;
   };
 };
 

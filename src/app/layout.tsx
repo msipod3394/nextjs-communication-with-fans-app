@@ -1,4 +1,5 @@
 import styles from "@/components/front/index/index.module.scss";
+import Footer from "@/components/nav/Footer";
 import Header from "@/components/nav/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { fontNotoSansJP } from "@/configs/font";
@@ -57,6 +58,7 @@ export default function RootLayout({
           <Header />
           <hr className="border-t" />
           <div className={`sm:mt-20 ${styles.mainHeight}`}>{children}</div>
+          <Footer />
         </div>
         <Toaster />
       </body>

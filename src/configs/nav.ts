@@ -41,10 +41,5 @@ export const NavItem: NavConfig = {
       href: "/subscribe",
       icon: "billing",
     },
-    {
-      title: "設定",
-      href: "/setting",
-      icon: "settings",
-    },
   ],
 };

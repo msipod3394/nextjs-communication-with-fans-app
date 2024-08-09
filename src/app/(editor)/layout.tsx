@@ -1,5 +1,4 @@
 import DashboardNav from "@/components/nav/DashboardNav";
-import Footer from "@/components/nav/Footer";
 import { NavItem } from "@/configs/nav";
 
 export default function EditorLayout({
@@ -17,7 +16,6 @@ export default function EditorLayout({
         <main className="flex flex-col w-full flex-1">{children}</main>
       </div>
       <hr className="border-t" />
-      <Footer />
     </div>
   );
 }
