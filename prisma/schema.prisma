@@ -132,6 +132,7 @@ model Images {
   id        String   @id @default(cuid()) // 主キー設定
   userId    String
   postId    String   
+  imageName String
   imageUrl  String   
   createdAt DateTime @default(now()) @map(name: "created_at")
 

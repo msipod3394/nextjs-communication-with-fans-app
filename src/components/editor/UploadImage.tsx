@@ -2,10 +2,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Icon } from "../icon/icon";
 import { Button, buttonVariants } from "../ui/button";
+import { toast } from "../ui/use-toast";
 
 export default function UploadImage({
   userId,
@@ -14,36 +16,40 @@ export default function UploadImage({
   userId: string;
   postId: string;
 }) {
-  const public_url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/public-image-bucket/img/`;
+  // 画像URL
+  const public_url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/public-image-bucket/`;
+  // 投稿に紐づく画像リスト
   const [urlList, setUrlList] = useState<string[]>([]);
+  // セットした画像URL
   const [file, setFile] = useState<File | null>(null);
+  // storageアップ中のローディング
   const [loading, setLoading] = useState(false);
 
-  const listAllImages = async () => {
-    setLoading(true);
-    const { data, error } = await supabase.storage
-      .from("public-image-bucket")
-      .list("img", {
-        limit: 100,
-        offset: 0,
-        sortBy: { column: "created_at", order: "desc" },
-      });
-    if (error) {
-      console.error("画像リストの取得中にエラーが発生しました:", error);
-      setLoading(false);
-      return;
-    }
+  const router = useRouter();
 
-    const filteredData = data.filter(
-      (item) => item.name !== ".emptyFolderPlaceholder"
-    );
-    setUrlList(filteredData.map((item) => item.name));
-    setLoading(false);
+  // 画像リストを取得
+  const fetchImages = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("images")
+        .select("imageUrl")
+        .eq("userId", userId)
+        .eq("postId", postId);
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (data) {
+        setUrlList(data.map((item) => item.imageUrl));
+      }
+    } catch (error) {
+      console.error("画像の取得中にエラーが発生しました:", error);
+    }
   };
 
   useEffect(() => {
-    listAllImages();
-  }, [setFile]);
+    fetchImages();
+  }, [userId, postId]);
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -51,12 +57,19 @@ export default function UploadImage({
     }
   };
 
+  // 画像送信
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!file) {
-      alert("ファイルを選択してください。");
+      // alert("ファイルを選択してください。");
+      toast({
+        title: "ファイルを選択してください。",
+        variant: "destructive",
+      });
       return;
     }
+
+    console.log("file", file);
 
     if (file.type.match("image.*")) {
       setLoading(true);
@@ -69,7 +82,12 @@ export default function UploadImage({
         .upload(filePath, file);
 
       if (uploadError) {
-        alert("アップロード中にエラーが発生しました：" + uploadError.message);
+        return toast({
+          title: "アップロード中にエラーが発生しました：",
+          description:
+            "画像がアップロードされませんでした。もう一度お試しください。",
+          variant: "destructive",
+        });
         setLoading(false);
         return;
       }
@@ -86,21 +104,43 @@ export default function UploadImage({
         body: JSON.stringify({
           userId,
           postId,
+          imageName: file.name,
           imageUrl,
         }),
       });
 
       if (!response.ok) {
         const { error } = await response.json();
-        alert("画像情報の追加中にエラーが発生しました：" + error);
+        console.error("画像情報の追加中にエラーが発生しました：" + error);
+
+        toast({
+          title: "送信エラー",
+          description: "画像情報の追加中にエラーが発生しました：",
+          variant: "destructive",
+        });
+
         setLoading(false);
         return;
       }
 
+      // 成功した場合、画像リストを再取得
+      fetchImages();
+      router.refresh();
+      router.push(`${postId}`);
+
+      toast({
+        title: "更新しました",
+        description: "記事が正常に更新されました。",
+      });
+
       setFile(null);
       setLoading(false);
     } else {
-      alert("画像ファイル以外はアップロードできません。");
+      toast({
+        title: "送信エラー",
+        description: "画像ファイル以外はアップロードできません。",
+        variant: "destructive",
+      });
     }
   };
 
@@ -114,9 +154,13 @@ export default function UploadImage({
           accept="image/*"
           onChange={handleChangeFile}
         />
-        <Button className={cn(buttonVariants())} type="submit" disabled={!file || loading}>
+        <Button
+          className={cn(buttonVariants())}
+          type="submit"
+          disabled={!file || loading}
+        >
           {loading && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
-          <span>登録</span>
+          <span>画像を登録</span>
         </Button>
       </form>
       <ul className="grid gap-10 my-12 sm:grid-cols-2 md:grid-cols-3">
@@ -125,8 +169,8 @@ export default function UploadImage({
             <div className="relative aspect-w-9 aspect-h-16 group">
               <div className="absolute inset-0">
                 <Image
-                  src={public_url + item}
-                  alt={`${item}`}
+                  src={item}
+                  alt={`Image`}
                   layout="fill"
                   objectFit="cover"
                   className="transition-opacity duration-300 ease-in-out"

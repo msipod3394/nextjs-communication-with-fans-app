@@ -7,6 +7,7 @@ import { z, ZodError } from "zod";
 const imageCreateSchema = z.object({
   userId: z.string(),
   postId: z.string(),
+  imageName: z.string(),
   imageUrl: z.string(),
 });
 
@@ -21,13 +22,16 @@ export async function POST(req: NextRequest) {
     // リクエストボディの取得と型検証
     const json = await req.json();
     const body = imageCreateSchema.parse(json);
-    const { userId, postId, imageUrl } = body;
+    const { userId, postId, imageName, imageUrl } = body;
+
+    console.log(userId, postId, imageName, imageUrl);
 
     // DBに新規作成
     const createImage = await db.images.create({
       data: {
         userId,
         postId,
+        imageName,
         imageUrl,
       },
       // idだけ取得

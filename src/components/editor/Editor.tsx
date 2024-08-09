@@ -41,7 +41,7 @@ export default function Editor({ post }: EditorProps) {
       onReady() {
         ref.current = editor;
       },
-      placeholder: "ここに内容を書いてください",
+      placeholder: "メモを残すことができます",
       data: body.content,
       inlineToolbar: true,
       tools: {
@@ -124,13 +124,6 @@ export default function Editor({ post }: EditorProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-8">
-        <div className="flex justify-between items-center">
-          <p className="text-sm text-muted-foreground">公開状態：公開</p>
-          <Button className={cn(buttonVariants())} type="submit">
-            {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
-            <span>保存</span>
-          </Button>
-        </div>
         <div className="max-w-[800px]">
           <TextareaAutosize
             id="title"
@@ -142,6 +135,10 @@ export default function Editor({ post }: EditorProps) {
         </div>
         <div id="editor" className=""></div>
       </div>
+      <Button className={cn(buttonVariants())} type="submit">
+        {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
+        <span>メモを保存</span>
+      </Button>
     </form>
   );
 }

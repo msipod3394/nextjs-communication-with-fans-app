@@ -51,7 +51,7 @@ export default async function DashboardPage() {
         ) : (
           <div className="grid grid-1">
             <p className="font-semibold text-gray-100">
-              記事を投稿してみましょう！
+              写真を投稿してみましょう！
             </p>
           </div>
         )}

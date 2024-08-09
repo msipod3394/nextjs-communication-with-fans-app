@@ -22,9 +22,8 @@ interface EditorProps {
 }
 
 export default async function EditorPage({ params }: EditorProps) {
-  const session = await getUserCurrent();
-  const user = await getUserData();
-
+  // セッションとユーザー情報の取得
+  const [session, user] = await Promise.all([getUserCurrent(), getUserData()]);
   if (!session || !user) {
     redirect("/login");
   }
@@ -32,11 +31,8 @@ export default async function EditorPage({ params }: EditorProps) {
   const userId = user.id;
   const postId = params.postId;
 
-  // console.log(userId, postId);
-
-  // 詳細記事の取得
+  // 記事の取得
   const post = await getPostForUser(postId, userId);
-  // console.log("post", post);
 
   if (!post) {
     notFound();
@@ -44,8 +40,8 @@ export default async function EditorPage({ params }: EditorProps) {
 
   return (
     <>
-      <Editor post={post} />
       <UploadImage userId={userId} postId={postId} />
+      <Editor post={post} />
     </>
   );
 }
