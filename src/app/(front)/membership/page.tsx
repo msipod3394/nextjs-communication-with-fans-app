@@ -14,7 +14,7 @@ export default async function MembershipPage() {
     // ユーザーデータの取得
     getUserData(),
   ]);
-  console.log(session, user);
+  // console.log(session, user);
 
   // セッションが存在している & サブスク契約している場合
   const showManageSubscriptionButton = !!session && !!user?.isSubscribed;
