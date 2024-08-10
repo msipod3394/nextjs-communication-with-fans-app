@@ -28,7 +28,7 @@ export default withAuth(
         return NextResponse.redirect(new URL("/login", req.url));
       }
     } catch (error) {
-      console.error("Error getting token:", error);
+      console.error("トークン取得エラー:", error);
     }
   },
   {

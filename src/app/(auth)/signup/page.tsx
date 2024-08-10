@@ -11,7 +11,6 @@ export default function SignIn() {
             いずれかの認証方法で アカウントを作成してください。
           </p>
         </div>
-        {/* <SignInForm /> */}
         <AuthLogin />
         <p className="px-6 text-center text-sm text-muted-foreground">
           <Link
