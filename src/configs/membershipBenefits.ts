@@ -7,18 +7,18 @@ export type Benefit = {
 
 export const benefits: Benefit[] = [
   {
-    title: "会員限定プレミアム動画視聴",
-    description: "限定で配信しているプレミアム動画を視聴することができます",
+    title: "会員限定プレミアムフォトの閲覧",
+    description: "会員様限定で公開しているプレミアムフォトを閲覧することができます",
     plan: "basic",
   },
   {
     title: "コミュニケーション機能",
     description: "撮影会で撮影した写真を投稿・保存することができます",
-    plan: "premium",
+    plan: "basic",
   },
   {
     title: "写真集を優先販売",
-    description: "コミケで販売予定の写真集を優先で販売します",
+    description: "写真集を優先に購入予約できます",
     plan: "premium",
   },
 ];
