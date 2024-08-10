@@ -29,7 +29,10 @@ export const RadioField = ({
       name={name}
       render={({ field }) => (
         <FormItem className="space-y-3">
-          <FormLabel>{label}</FormLabel>
+          <FormLabel>
+            {label}
+            {required && <span className="ml-1 text-red-600">※</span>}
+          </FormLabel>
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}

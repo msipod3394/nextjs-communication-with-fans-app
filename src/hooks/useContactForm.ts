@@ -64,6 +64,8 @@ export const useContactForm = () => {
         description: "正常に送信されませんでした。もう一度お試しください。",
         variant: "destructive",
       });
+
+      return;
     }
 
     return response.json();
@@ -71,7 +73,15 @@ export const useContactForm = () => {
 
   // onSubmit
   const onSubmit: SubmitHandler = useCallback(
-    async (values: z.infer<typeof formSchema>) => {
+    async (values: z.infer<typeof ContactFormSchema>) => {
+      // 送信確認のダイアログを表示
+      const confirmSend = window.confirm("本当に送信してよろしいですか？");
+
+      // キャンセルされた場合、送信処理を中止
+      if (!confirmSend) {
+        return;
+      }
+
       // ローディング開始
       setIsSending(true);
 

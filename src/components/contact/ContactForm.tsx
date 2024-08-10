@@ -14,14 +14,14 @@ export const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* お問合せ概要 */}
         <RadioField
           control={form.control}
           name="inquiry_category"
           label="お問合せ概要"
           required={true}
-          radioArray={["イベント出演の依頼", "コラボレーションのご依頼"]}
+          radioArray={["イベント出演の依頼", "コラボレーションの依頼"]}
         />
 
         {/* お名前 */}
@@ -48,7 +48,7 @@ export const ContactForm = () => {
           name="phone"
           label="電話番号"
           placeholder="03-1234-5678"
-          required={false}
+          required={true}
         />
 
         {/* 会社名 */}
