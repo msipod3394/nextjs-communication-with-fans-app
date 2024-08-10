@@ -8,7 +8,7 @@ export default function ContactPage() {
         heading="Contact"
         description="撮影・イベント出演のご依頼などはこちらから受け付けております。"
       />
-      <div className="mt-16 mx-auto w-full sm:w-[1000px]">
+      <div className="my-16 mx-auto w-full sm:w-[1000px]">
         <ContactForm />
       </div>
     </div>

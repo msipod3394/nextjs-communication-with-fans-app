@@ -16,7 +16,7 @@ export const useContactForm = () => {
   // 送信状態の管理
   const [isSending, setIsSending] = useState<boolean>(false);
 
-  // useForm
+  // RHF
   const form = useForm<z.infer<typeof ContactFormSchema>>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
@@ -109,7 +109,7 @@ export const useContactForm = () => {
         setIsSending(false);
       }
     },
-    [router, setValues]
+    [router, setValues, toast]
   );
 
   return { isSending, form, onSubmit };
