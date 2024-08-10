@@ -1,0 +1,26 @@
+/*-----------------------------------------------
+* anime
+-------------------------------------------------*/
+// animeUnderline
+.animeUnderline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+    transform: scale(0, 1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}

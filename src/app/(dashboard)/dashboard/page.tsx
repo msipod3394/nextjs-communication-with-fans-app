@@ -30,7 +30,6 @@ export default async function DashboardPage() {
       createdAt: "desc",
     },
   });
-  // console.log(posts);
 
   return (
     <DashboardShell>

@@ -1,64 +1,35 @@
 "use client";
-import { cn } from "@/lib/utils";
+import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import { User } from "@prisma/client";
-import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { buttonVariants } from "../ui/button";
+import { AuthClientButton } from "../auth/AuthClientButton";
 
 type UserNavProps = {
-  items: {
-    isLogin: NavItem[];
-    isNotLogin: NavItem[];
-  };
+  items: NavItem[];
   session: Pick<User, "id" | "name" | "email" | "image"> | null;
 };
 
 export const UserNav = ({ items, session }: UserNavProps) => {
   return (
-    <div>
-      {session ? (
-        <div className="flex gap-2">
-          {items.isLogin.map(
-            (item) =>
+    <nav aria-label="User navigation" className="flex items-center gap-6">
+      <ul>
+        {session &&
+          items.map(
+            (item, index) =>
               !item.disabled && (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={cn(
-                    buttonVariants({ variant: item.variant, size: "sm" }),
-                    "px-4 font-bold text-sm"
-                  )}
-                  onClick={() => {
-                    if (item.title === "Logout") {
-                      signOut();
-                    }
-                  }}
-                >
-                  {item.title}
-                </Link>
+                <li key={item.index}>
+                  <Link
+                    href={item.href}
+                    className={`text-sm ${styles.animeUnderline}`}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
               )
           )}
-        </div>
-      ) : (
-        <div>
-          {items.isNotLogin.map(
-            (item) =>
-              !item.disabled && (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={cn(
-                    buttonVariants({ variant: item.variant, size: "sm" }),
-                    "px-4 font-bold text-sm"
-                  )}
-                >
-                  {item.title}
-                </Link>
-              )
-          )}
-        </div>
-      )}
-    </div>
+      </ul>
+      <AuthClientButton session={session} />
+    </nav>
   );
 };

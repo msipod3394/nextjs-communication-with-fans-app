@@ -1,6 +1,6 @@
 "use client";
+import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
-import { User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import { Icon } from "../icon/icon";
@@ -8,45 +8,34 @@ import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
 
 type MainNavProps = {
-  items: [NavItem[], NavItem[]];
-  session: Pick<User, "id" | "name" | "email" | "image"> | null;
+  items: NavItem[];
 };
 
-export const MainNav = ({ items, session }: MainNavProps) => {
+export const MainNav = ({ items }: MainNavProps) => {
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
-  // ナビの取り出し
-  const [mainNav, loginUserNav] = items;
-
   return (
     <div className="flex items-center md:gap-8">
-      <nav className="md:flex gap-6 hidden justify-between">
-        <div className="md:flex gap-6">
-          {mainNav.map(
-            (item) =>
+      <nav
+        aria-label="Main navigation"
+        className="md:flex gap-6 hidden justify-between"
+      >
+        <ul className="md:flex gap-6">
+          {items.map(
+            (item, index) =>
               !item.disabled && (
-                <Link key={item.title} href={item.href} className="text-sm">
-                  {item.title}
-                </Link>
-              )
-          )}
-        </div>
-        <div className="md:flex gap-6">
-          {session &&
-            loginUserNav.map(
-              (item) =>
-                !item.disabled && (
+                <li key={item.index}>
                   <Link
-                    key={item.title}
                     href={item.href}
-                    className="text-sm  text-black"
+                    className={`text-sm ${styles.animeUnderline}`}
                   >
                     {item.title}
                   </Link>
-                )
-            )}
-        </div>
+                </li>
+              )
+          )}
+        </ul>
       </nav>
       <Button
         className="md:hidden w-10 h-10 p-0"
@@ -55,9 +44,7 @@ export const MainNav = ({ items, session }: MainNavProps) => {
         <Icon.menu className="w-full h-full bg-black text-white" />
       </Button>
       {/* モバイルメニュー表示 */}
-      {showMobileMenu && (
-        <MobileNav items={[mainNav, loginUserNav]} session={session} />
-      )}
+      {showMobileMenu && <MobileNav items={items} />}
     </div>
   );
 };

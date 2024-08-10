@@ -9,23 +9,25 @@ import { Icon } from "../icon/icon";
 import { Button, buttonVariants } from "../ui/button";
 import { toast } from "../ui/use-toast";
 
-export default function UploadImage({
-  userId,
-  postId,
-}: {
+type UploadImageProps = {
   userId: string;
   postId: string;
-}) {
+};
+
+export default function UploadImage({ userId, postId }: UploadImageProps) {
+  const router = useRouter();
+
   // 画像URL
   const public_url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/public-image-bucket/`;
+
   // 投稿に紐づく画像リスト
   const [urlList, setUrlList] = useState<string[]>([]);
+
   // セットした画像URL
   const [file, setFile] = useState<File | null>(null);
+
   // storageアップ中のローディング
   const [loading, setLoading] = useState(false);
-
-  const router = useRouter();
 
   // 画像リストを取得
   const fetchImages = async () => {
@@ -112,8 +114,6 @@ export default function UploadImage({
       });
       return;
     }
-
-    console.log("file", file);
 
     if (file.type.match("image.*")) {
       setLoading(true);

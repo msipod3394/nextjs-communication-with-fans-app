@@ -5,16 +5,12 @@ import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link";
 
 type MainNavProps = {
-  items: [NavItem[], NavItem[]];
-  session: Pick<User, "id" | "name" | "email" | "image"> | null;
+  items: NavItem[];
 };
 
-export default function MobileNav({ items, session }: MainNavProps) {
+export default function MobileNav({ items }: MainNavProps) {
   // body のスクロールをロック
   useLockBodyScroll();
-
-  // ナビの取り出し
-  const [mainNav, loginUserNav] = items;
 
   return (
     <div className="fixed top-20 left-0 z-100 p-8 shadow-md w-full md:hidden bg-black text-white animate-fade-in min-h-svh">
@@ -23,7 +19,7 @@ export default function MobileNav({ items, session }: MainNavProps) {
           <span className="font-bold sm:inline-block">{siteConfig.name}</span>
         </Link>
         <nav className="text-sm flex gap-4 flex-col">
-          {mainNav.map(
+          {items.map(
             (item) =>
               !item.disabled && (
                 <Link key={item.title} href={item.href} className="text-sm">
@@ -31,15 +27,6 @@ export default function MobileNav({ items, session }: MainNavProps) {
                 </Link>
               )
           )}
-          {session &&
-            loginUserNav.map(
-              (item) =>
-                !item.disabled && (
-                  <Link key={item.title} href={item.href} className="text-sm">
-                    {item.title}
-                  </Link>
-                )
-            )}
         </nav>
       </div>
     </div>
