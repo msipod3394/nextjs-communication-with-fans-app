@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
 
     // セッション取得
     const session = await getServerSession(AuthOptions);
-
     console.log(session);
 
     // セッションがなければ、403エラーを返す

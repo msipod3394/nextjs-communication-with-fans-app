@@ -27,8 +27,6 @@ export const SubscriptionButton = ({
 
   // メンバーシップ契約実行
   const SignupSubscription = async (planId: string) => {
-    console.log("planId", planId);
-
     const response = await fetch(`/api/subscription/${planId}`);
     const data = await response.json();
 
