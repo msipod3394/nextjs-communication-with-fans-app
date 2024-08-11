@@ -31,9 +31,9 @@ export const AuthLogin = () => {
             }}
           >
             {isGitHubLoading ? (
-              <Icon.spinner w="24" h="24" className="mr-2 animate-spin" />
+              <Icon.spinner className="mr-2 animate-spin" />
             ) : (
-              <Icon.github w="24" h="24" className="mr-2" />
+              <Icon.github className="mr-2" />
             )}
             GitHub
           </Button>
@@ -59,9 +59,9 @@ export const AuthLogin = () => {
             }}
           >
             {isGoogleLoading ? (
-              <Icon.spinner w="24" h="24" className="mr-2 animate-spin" />
+              <Icon.spinner className="mr-2 animate-spin" />
             ) : (
-              <Icon.google w="24" h="24" className="mr-2" />
+              <Icon.google className="mr-2" />
             )}
             Google
           </Button>

@@ -6,7 +6,9 @@ export type SiteConfig = {
   og: string;
   links: {
     x: string;
-    github: string;
+    // github: string;
+    instagram: string;
+    tiktok: string;
   };
   footer: {
     caution: string;
@@ -24,5 +26,6 @@ export type NavItem = {
 
 export type NavConfig = {
   mainNav: NavItem[];
+  loginUserNav: NavItem[];
   dashboardNav: NavItem[];
 };

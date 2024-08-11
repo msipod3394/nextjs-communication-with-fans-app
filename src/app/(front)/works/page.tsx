@@ -1,10 +1,10 @@
 import { FrontHeading } from "@/components/dashboard/FrontHeading";
 import { WorkListArticle } from "@/components/front/works/WorkListArticle";
 import { microcmsClient } from "@/lib/microcmsClient";
-import { ContentList } from "@/types/works";
+import { WorksContentsList } from "@/types/cms";
 
 export default async function WorksPage() {
-  const contentList: ContentList = await microcmsClient.get({
+  const contentList: WorksContentsList = await microcmsClient.get({
     endpoint: "works",
   });
   return (

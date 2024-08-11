@@ -1,13 +1,15 @@
-import { Content } from "@/types/works";
+import { WorksContents } from "@/types/cms";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
 type WorkListArticleProps = {
-  content: Content;
+  content: WorksContents;
 };
 
 export const WorkListArticle = ({ content }: WorkListArticleProps) => {
+  console.log(content);
+
   return (
     <article className="group relative flex flex-col space-y-4">
       <div className="relative aspect-w-9 aspect-h-16 sm:aspect-w-9 sm:aspect-h-16 group">

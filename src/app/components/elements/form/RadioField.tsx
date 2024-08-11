@@ -8,14 +8,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { RadioFieldProps } from "@/types/formField";
 
-type RadioFieldProps = {
-  control: Control<any>;
-  name: string;
-  label: string;
-  required?: boolean;
-  radioArray: Array[string];
-};
-
 export const RadioField = ({
   control,
   name,

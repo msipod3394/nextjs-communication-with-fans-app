@@ -5,8 +5,6 @@ import {
 } from "@/lib/editor/postFormSchema";
 import { cn } from "@/lib/utils";
 import EditorJS from "@editorjs/editorjs";
-import Header from "@editorjs/header";
-import List from "@editorjs/list";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -44,14 +42,14 @@ export default function Editor({ post }: EditorProps) {
       placeholder: "メモを残すことができます",
       data: body.content,
       inlineToolbar: true,
-      tools: {
-        header: Header,
-        list: {
-          class: List,
-          inlineToolbar: true,
-        },
-        // linkTool: LinkTool,
-      },
+      // tools: {
+      //   header: Header,
+      //   list: {
+      //     class: List,
+      //     inlineToolbar: true,
+      //   },
+      //   // linkTool: LinkTool,
+      // },
     });
     return editor;
   }, [post]);

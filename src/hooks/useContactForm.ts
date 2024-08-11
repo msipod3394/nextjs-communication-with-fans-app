@@ -5,6 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+type ContactFormValues = z.infer<typeof ContactFormSchema>;
 
 export const useContactForm = () => {
   const router = useRouter();
@@ -17,7 +20,7 @@ export const useContactForm = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
 
   // RHF
-  const form = useForm<z.infer<typeof ContactFormSchema>>({
+  const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: "",
@@ -31,7 +34,7 @@ export const useContactForm = () => {
   });
 
   // フォームの値をAPIに送信
-  const sendForm = async (values: z.infer<typeof ContactFormSchema>) => {
+  const sendForm = async (values: ContactFormValues) => {
     const { name, email, phone, company, inquiry_category, inquiry_content } =
       values;
 
@@ -72,8 +75,8 @@ export const useContactForm = () => {
   };
 
   // onSubmit
-  const onSubmit: SubmitHandler = useCallback(
-    async (values: z.infer<typeof ContactFormSchema>) => {
+  const onSubmit: SubmitHandler<ContactFormValues> = useCallback(
+    async (values) => {
       // 送信確認のダイアログを表示
       const confirmSend = window.confirm("本当に送信してよろしいですか？");
 

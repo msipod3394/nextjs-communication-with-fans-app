@@ -1,5 +1,5 @@
 import { FrontHeading } from "@/components/dashboard/FrontHeading";
-import { PlanCard } from "@/components/front/membership/PlanCard";
+import { BenefitPlanCard } from "@/components/front/membership/BenefitPlanCard";
 import { SubscriptionButton } from "@/components/front/membership/SubscriptionButton";
 import { getUserCurrent } from "@/lib/session";
 import { getAllPlans } from "@/utils/getAllPlans";
@@ -33,7 +33,7 @@ export default async function MembershipPage() {
       />
       <div className="mt-16 flex flex-row gap-8 justify-center">
         {plans.map((plan) => (
-          <PlanCard key={plan.id} plan={plan}>
+          <BenefitPlanCard key={plan.id} plan={plan}>
             <SubscriptionButton
               planId={plan.id}
               user={user}
@@ -41,7 +41,7 @@ export default async function MembershipPage() {
               showManageSubscriptionButton={showManageSubscriptionButton}
               showCreateAccountButton={showCreateAccountButton}
             />
-          </PlanCard>
+          </BenefitPlanCard>
         ))}
       </div>
     </div>

@@ -40,6 +40,10 @@ export async function POST(req: NextRequest) {
     /**
      * supabaseにstripe顧客idを追加
      */
+    // user.email が string 型であることを確認
+    if (!user.email || typeof user.email !== "string") {
+      return NextResponse.json("無効なメールアドレスです", { status: 400 });
+    }
 
     // 顧客データ作成
     const customer = await stripe.customers.create({ email: user.email });

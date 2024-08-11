@@ -25,11 +25,6 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       return Response.json({ error }, { status: 500 });
-      return toast({
-        title: "問題が発生しました",
-        description: "送信に失敗しました。もう一度お試しください。",
-        variant: "destructive",
-      });
     }
 
     return Response.json(data);

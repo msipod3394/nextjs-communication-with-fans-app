@@ -3,7 +3,7 @@ import UploadImage from "@/components/editor/UploadImage";
 import { db } from "@/lib/db";
 import { getUserCurrent } from "@/lib/session";
 import { getUserData } from "@/utils/getUserData";
-import { User } from "@prisma/client";
+import { Post, User } from "@prisma/client";
 import { notFound, redirect } from "next/navigation";
 
 // 詳細記事のデータ取得

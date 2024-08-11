@@ -1,11 +1,12 @@
 "use client";
 import { breakpoint, useWindowSize } from "@/hooks/useWindowSize";
+import { Image as CMSImage } from "@/types/cms";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { WorkModal } from "./WorkModal";
 
 type WorkImagesProps = {
-  items: Image[];
+  items: CMSImage[];
 };
 
 export const WorkImages = ({ items }: WorkImagesProps) => {

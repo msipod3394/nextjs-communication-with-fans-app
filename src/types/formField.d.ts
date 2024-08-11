@@ -19,12 +19,12 @@ export type TextareaFieldProps = {
 };
 
 // ラジオボタン
-export type RadioFieldProps = {
+type RadioFieldProps = {
   control: Control<any>;
   name: string;
   label: string;
   required?: boolean;
-  radioArray: string[];
+  radioArray: Array[string];
 };
 
 // プライバシーポリシー

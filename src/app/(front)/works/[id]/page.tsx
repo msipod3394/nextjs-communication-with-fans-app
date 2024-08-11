@@ -4,7 +4,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { microcmsClient } from "@/lib/microcmsClient";
 import { getUserCurrent } from "@/lib/session";
 import { cn } from "@/lib/utils";
-import { Content } from "@/types/works";
+import { WorksContents } from "@/types/cms";
 import { getUserData } from "@/utils/getUserData";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -18,13 +18,13 @@ type Params = {
 
 export default async function WorksDetailPage({ params }: Params) {
   const contentId = params.id;
-  let content: Content;
+  let content: WorksContents;
   let session, user;
 
   try {
     [content, session, user] = await Promise.all([
       // コンテンツの取得
-      microcmsClient.get<Content>({
+      microcmsClient.get<WorksContents>({
         endpoint: "works",
         contentId,
       }),

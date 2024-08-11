@@ -18,8 +18,7 @@ export const ContactFormSchema = z.object({
     .string()
     .regex(phoneRegex, {
       message: "適切な電話番号を入力してください。",
-    })
-    .optional(),
+    }),
   // 会社名
   company: z.string(),
   // お問合せ概要

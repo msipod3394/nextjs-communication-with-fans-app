@@ -2,7 +2,7 @@ import { Plan } from "@/types/plan";
 import Stripe from "stripe";
 
 // Stripeから商品情報を取得
-export const getAllPlans = async () => {
+export const getAllPlans = async (): Promise<Plan[]> => {
   // stripeの初期化
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -10,11 +10,13 @@ export const getAllPlans = async () => {
   const { data } = await stripe.plans.list();
 
   // 商品名を取得
-  const plans = await Promise.all<Plan>(
+  const plans: Plan[] = await Promise.all(
     data.map(async (plan) => {
+      if (!plan.product) {
+        throw new Error(`該当するIDがありません ${plan.id} `);
+      }
+
       const product = await stripe.products.retrieve(plan.product as string);
-      // console.log("plan", plan);
-      // console.log("product", product);
 
       // 使うデータだけ返す
       return {
@@ -31,5 +33,6 @@ export const getAllPlans = async () => {
   const sortPlan = plans.sort(
     (a, b) => parseInt(a.price!) - parseInt(b.price!)
   );
+
   return sortPlan;
 };

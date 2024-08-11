@@ -1,13 +1,14 @@
 "use client";
 import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
-import { User } from "@prisma/client";
+import { Session } from "next-auth";
 import Link from "next/link";
 import { AuthClientButton } from "../auth/AuthClientButton";
 
 type UserNavProps = {
   items: NavItem[];
-  session: Pick<User, "id" | "name" | "email" | "image"> | null;
+  session: Session | null;
+  // session: Pick<User, "id" | "name" | "email" | "image"> | null;
 };
 
 export const UserNav = ({ items, session }: UserNavProps) => {
@@ -18,7 +19,7 @@ export const UserNav = ({ items, session }: UserNavProps) => {
           items.map(
             (item, index) =>
               !item.disabled && (
-                <li key={item.index}>
+                <li key={index}>
                   <Link
                     href={item.href}
                     className={`text-sm ${styles.animeUnderline}`}

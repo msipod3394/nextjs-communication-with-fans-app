@@ -53,7 +53,7 @@ export const Icon = {
   menu: MenuIcon,
 
   // spinner
-  // spinner: ({ w, h, ...props }) => (
+  // spinner: ({ ...props }) => (
   //   <svg
   //     xmlns="http://www.w3.org/2000/svg"
   //     width={w}
@@ -69,11 +69,11 @@ export const Icon = {
   // ),
 
   // github
-  github: ({ w, h, ...props }) => (
+  github: ({ ...props }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={w}
-      height={h}
+      width="24"
+      height="24"
       viewBox="0 0 432 416"
       {...props}
     >
@@ -85,11 +85,11 @@ export const Icon = {
   ),
 
   // google
-  google: ({ w, h, ...props }) => (
+  google: ({ ...props }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={w}
-      height={h}
+      width="24"
+      height="24"
       viewBox="0 0 48 48"
       {...props}
     >
@@ -137,10 +137,10 @@ export const Icon = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-instagram"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-instagram"
       {...props}
     >
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -161,8 +161,8 @@ export const Icon = {
       <path
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         d="M8.422 9.717V1.141m0 8.58a2.893 2.893 0 1 1-2.893-2.893M8.422 1.14a4.288 4.288 0 0 0 4.288 4.29"
       />
     </svg>

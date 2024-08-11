@@ -4,7 +4,7 @@ import { PostCreateButton } from "@/components/dashboard/PostCreateButton";
 import { PostItem } from "@/components/dashboard/PostItem";
 import { db } from "@/lib/db";
 import { getUserCurrent } from "@/lib/session";
-import { redirect } from "next/dist/server/api-utils";
+import { NextResponse } from "next/server";
 
 export default async function DashboardPage() {
   // ユーザーセッションの取得
@@ -12,7 +12,7 @@ export default async function DashboardPage() {
 
   // ユーザー情報がなければ、リダイレクト
   if (!user) {
-    redirect("/login");
+    return NextResponse.redirect("/login");
   }
 
   // postテーブルから情報取得;

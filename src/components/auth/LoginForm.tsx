@@ -9,7 +9,7 @@ export const LoginForm = () => {
   const { isSending, form, onSubmit } = useLoginForm();
 
   return (
-    <Form {...form} onSubmit={form.handleSubmit(onSubmit)}>
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-8">
         {/* メールアドレス */}
         <TextField
@@ -19,13 +19,17 @@ export const LoginForm = () => {
           placeholder="sample@gmail.com"
         />
         {/* パスワード */}
-        <TextField control={form.control} name="password" label="パスワード" />
+        <TextField
+          control={form.control}
+          name="password"
+          label="パスワード"
+          placeholder="********"
+        />
         <Button type="submit" disabled={isSending}>
           {isSending && <Icon.spinner className="w-4 h-4 mr-4 animate-spin" />}
           <span>送信</span>
         </Button>
       </form>
     </Form>
-    
   );
 };

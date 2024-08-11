@@ -8,16 +8,21 @@ import {
 } from "@/components/ui/card";
 import { getBenefitsByPlan } from "@/configs/membershipBenefits";
 import { Plan } from "@/types/plan";
+import { ReactNode } from "react";
 import { BenefitItem } from "./BenefitItem";
 
-type PlanCardProps = {
+type BenefitPlanCardProps = {
   plan: Plan;
   children: ReactNode;
   className?: string;
 };
 
-export const PlanCard = ({ plan, children, className }: PlanCardProps) => {
-  const filteredBenefits = getBenefitsByPlan(plan.name.toLowerCase());
+export const BenefitPlanCard = ({
+  plan,
+  children,
+  className = "",
+}: BenefitPlanCardProps) => {
+  const filteredBenefits = getBenefitsByPlan(plan.name!.toLowerCase());
 
   // 表記を日本語化
   let interval;

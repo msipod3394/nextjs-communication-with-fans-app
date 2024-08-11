@@ -8,9 +8,9 @@ import { useRouter } from "next/navigation";
 type SubscriptionButtonProps = {
   planId: string;
   user: User | null;
-  showSubscribeButton: boolean;
-  showManageSubscriptionButton: boolean;
-  showCreateAccountButton: boolean;
+  showSubscribeButton: boolean | undefined;
+  showManageSubscriptionButton: boolean | undefined;
+  showCreateAccountButton: boolean | undefined;
 };
 
 export const SubscriptionButton = ({

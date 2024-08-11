@@ -5,6 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+type AuthFormValues = z.infer<typeof AuthFormSchema>;
 
 export const useSignUpForm = () => {
   const router = useRouter();
@@ -14,7 +17,7 @@ export const useSignUpForm = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
 
   // useForm
-  const form = useForm<z.infer<typeof AuthFormSchema>>({
+  const form = useForm<AuthFormValues>({
     resolver: zodResolver(AuthFormSchema),
     defaultValues: {
       email: "",
@@ -23,9 +26,11 @@ export const useSignUpForm = () => {
   });
 
   // onSubmit
-  const onSubmit: SubmitHandler = useCallback(
-    async (values: z.infer<typeof AuthFormSchema>) => {
+  const onSubmit: SubmitHandler<AuthFormValues> = useCallback(
+    async (values) => {
       const { email, password } = values;
+
+      setIsSending(true);
 
       try {
         // サインアップ
@@ -44,6 +49,8 @@ export const useSignUpForm = () => {
         if (error instanceof Error) {
           console.log(error.message);
         }
+      } finally {
+        setIsSending(false);
       }
     },
     [router]

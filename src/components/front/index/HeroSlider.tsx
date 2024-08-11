@@ -10,7 +10,7 @@ import styles from "./index.module.scss";
 import { settingsDesktop, settingsMobile } from "./sliderSetting";
 
 type HeroSliderProps = {
-  contents: WorksContentsList[];
+  contents: WorksContentsList["contents"];
 };
 
 export const HeroSlider = ({ contents }: HeroSliderProps) => {
@@ -25,7 +25,7 @@ export const HeroSlider = ({ contents }: HeroSliderProps) => {
   }, []);
 
   // ホイール操作でスライド移動できるように
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider>(null);
   const handleWheel = useCallback((event) => {
     if (sliderRef.current) {
       if (event.deltaY > 0) {

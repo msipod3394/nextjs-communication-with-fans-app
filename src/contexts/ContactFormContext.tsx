@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 type ContactFormValues = {
   name: string;
@@ -23,7 +23,9 @@ const ContactFormContext = createContext<ContactFormContextType | undefined>(
 );
 
 // コンテキストプロバイダーコンポーネントの作成
-export const ContactFormProvider = ({ children }: React.ReactNode) => {
+export const ContactFormProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [values, setValues] = useState<ContactFormValues | null>(null);
 
   return (

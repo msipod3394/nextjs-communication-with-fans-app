@@ -12,13 +12,13 @@ export type WorksContents = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  content: string;
-  shooting_date: string;
   anime_title: string;
   anime_character: string;
   photo_default: Image[];
   photo_premium: Image[];
   is_show_top: boolean;
+  content?: string;
+  shooting_date?: string;
 };
 
 export type WorksContentsList = {

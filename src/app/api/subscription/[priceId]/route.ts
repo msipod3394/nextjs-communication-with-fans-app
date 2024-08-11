@@ -21,19 +21,32 @@ export async function GET(
    */
   // stripe初期化
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-  const session = await stripe.checkout.sessions.create({
-    customer: user?.stripeCustomerId,
-    mode: "subscription",
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/success/`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/canceled/`,
-  });
 
-  return NextResponse.json({ id: session.id });
+  // customer が string 型であることを確認
+  const customerId = user.stripeCustomerId;
+  if (typeof customerId !== "string") {
+    return NextResponse.json("Invalid customer ID", { status: 400 });
+  }
+
+  // 決済処理
+  try {
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      mode: "subscription",
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/success/`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/membership/canceled/`,
+    });
+
+    return NextResponse.json({ id: session.id });
+  } catch (error) {
+    console.error("Stripe error:", error);
+    return NextResponse.json("Internal server error", { status: 500 });
+  }
 }

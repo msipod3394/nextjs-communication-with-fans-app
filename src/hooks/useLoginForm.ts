@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+type AuthFormValues = z.infer<typeof AuthFormSchema>;
 
 export const useLoginForm = () => {
   const router = useRouter();
@@ -13,7 +16,7 @@ export const useLoginForm = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
 
   // useForm
-  const form = useForm<z.infer<typeof AuthFormSchema>>({
+  const form = useForm<AuthFormValues>({
     resolver: zodResolver(AuthFormSchema),
     defaultValues: {
       email: "",
@@ -22,8 +25,8 @@ export const useLoginForm = () => {
   });
 
   // onSubmit
-  const onSubmit: SubmitHandler = useCallback(
-    (values: z.infer<typeof AuthFormSchema>) => {
+  const onSubmit: SubmitHandler<AuthFormValues> = useCallback(
+    (values: AuthFormValues) => {
       console.log(values);
     },
     [router]

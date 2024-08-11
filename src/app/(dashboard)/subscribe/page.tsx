@@ -1,6 +1,6 @@
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
-import { PlanCard } from "@/components/front/membership/PlanCard";
+import { BenefitPlanCard } from "@/components/front/membership/BenefitPlanCard";
 import { SubscriptionManageButton } from "@/components/subscribe/subscriptionManageButton";
 import { Button } from "@/components/ui/button";
 import { getUserCurrent } from "@/lib/session";
@@ -29,7 +29,7 @@ export default async function SubscribePage() {
               const isSubscribed = plan.id === user.stripeSubscriptionId;
 
               return (
-                <PlanCard
+                <BenefitPlanCard
                   key={plan.id}
                   plan={plan}
                   className={`border p-4 rounded-md ${
@@ -46,7 +46,7 @@ export default async function SubscribePage() {
                     )}
                     <SubscriptionManageButton />
                   </div>
-                </PlanCard>
+                </BenefitPlanCard>
               );
             })}
           </div>
