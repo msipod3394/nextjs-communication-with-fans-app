@@ -55,13 +55,12 @@ export const SubscriptionButton = ({
             isRegistered && "bg-blue-600 text-white hover:bg-blue-700"
           }`}
           onClick={
-            goToSubscriptionManagement
-            // isRegistered
-            //   ? goToSubscriptionManagement
-            //   : () => SignupSubscription(planId)
+            isRegistered
+              ? goToSubscriptionManagement
+              : () => SignupSubscription(planId)
           }
         >
-          {isRegistered ? "ただいま契約中です" : "メンバーシップを変更する"}
+          {isRegistered ? "ただいま契約中です" : "メンバーシップ変更"}
         </Button>
       )}
       {showCreateAccountButton && (
