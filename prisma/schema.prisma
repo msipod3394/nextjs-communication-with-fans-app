@@ -54,7 +54,6 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
   image         String?
   isSubscribed  Boolean   @default(false) @map(name:"is_subscribed")
   createdAt     DateTime  @default(now())
@@ -68,8 +67,6 @@ model User {
   // 決済に関するスキーマ
   stripeCustomerId        String?  @unique  @map(name:"stripe_customer_id")
   stripeSubscriptionId    String?  @unique  @map(name:"stripe_subscription_id")
-  stripePriceId           String?  @unique  @map(name:"stripe_price_id")
-  stripeCurrentPeriodEnd  String?  @unique  @map(name:"stripe_current_period_end")
 
   @@map(name:"users")
 }
@@ -89,7 +86,7 @@ model Post {
   id        String   @id @default(cuid()) // 主キー設定
   title     String
   content   Json?
-  published Boolean  @default(false)
+  published Boolean  @default(true)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   authorId  String
@@ -98,33 +95,6 @@ model Post {
   images    Images[]
 
   @@map(name: "posts")
-}
-
-// 活動実績
-model Works {
-  id        String   @id @default(cuid()) // 主キー設定
-  title     String
-  content   String
-  published Boolean  @default(false)
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-
-  // premium   Premium? @relation(fields: [id], references: [id])
-  Premium Premium[]
-
-  @@map(name: "works")
-}
-
-// プレミアム
-model Premium {
-  id             String   @id @default(cuid()) // 主キー設定
-  url            String 
-  createdAt      DateTime @default(now()) @map(name: "created_at")
-  updatedAt      DateTime @default(now()) @map(name: "updated_at")
-
-  worksId Works @relation(fields: [id], references: [id])
-
-  @@map(name: "premiums")
 }
 
 // 画像投稿
@@ -141,3 +111,30 @@ model Images {
 
   @@map(name: "images")
 }
+
+// // 活動実績
+// model Works {
+//   id        String   @id @default(cuid()) // 主キー設定
+//   title     String
+//   content   String
+//   published Boolean  @default(false)
+//   createdAt DateTime @default(now()) @map(name: "created_at")
+//   updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+//   // premium   Premium? @relation(fields: [id], references: [id])
+//   Premium Premium[]
+
+//   @@map(name: "works")
+// }
+
+// // プレミアム
+// model Premium {
+//   id             String   @id @default(cuid()) // 主キー設定
+//   url            String 
+//   createdAt      DateTime @default(now()) @map(name: "created_at")
+//   updatedAt      DateTime @default(now()) @map(name: "updated_at")
+
+//   worksId Works @relation(fields: [id], references: [id])
+
+//   @@map(name: "premiums")
+// }
