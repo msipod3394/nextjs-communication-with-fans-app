@@ -7,7 +7,6 @@ import { UserNav } from "./UserNav";
 export default async function Header() {
   // セッション取得
   const session = await getServerSession(AuthOptions);
-  console.log(session);
 
   return (
     <header className="z-100 bg-black text-white px-6 fixed w-full z-40">

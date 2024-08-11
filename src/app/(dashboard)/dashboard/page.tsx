@@ -2,29 +2,31 @@ import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { PostCreateButton } from "@/components/dashboard/PostCreateButton";
 import { PostItem } from "@/components/dashboard/PostItem";
+import { AuthOptions } from "@/lib/auth/AuthOptions";
 import { db } from "@/lib/db";
-import { getUserCurrent } from "@/lib/session";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export default async function DashboardPage() {
-  // ユーザーセッションの取得
-  const user = await getUserCurrent();
+  // セッションの取得
+  const session = await getServerSession(AuthOptions);
 
-  // ユーザー情報がなければ、リダイレクト
-  if (!user) {
+  // 取得できなければ、リダイレクト
+  if (!session) {
     return NextResponse.redirect("/login");
   }
 
-  // postテーブルから情報取得;
+  // postテーブルから情報取得
   const posts = await db.post.findMany({
     where: {
-      authorId: user.id,
+      authorId: session.user.id,
     },
     select: {
       id: true,
       title: true,
       published: true,
       createdAt: true,
+      authorId: true,
     },
     orderBy: {
       createdAt: "desc",
