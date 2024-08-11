@@ -10,6 +10,7 @@ import { NextResponse } from "next/server";
 export default async function DashboardPage() {
   // セッションの取得
   const session = await getServerSession(AuthOptions);
+  console.log(session);
 
   // 取得できなければ、リダイレクト
   if (!session) {
