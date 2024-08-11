@@ -107,7 +107,7 @@ model Images {
   createdAt DateTime @default(now()) @map(name: "created_at")
 
   user      User     @relation(fields: [userId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@map(name: "images")
 }
