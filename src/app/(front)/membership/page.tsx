@@ -14,7 +14,7 @@ export default async function MembershipPage() {
     // ユーザーデータの取得
     getUserData(),
   ]);
-  // console.log(session, user);
+  // console.log("plans", plans);
 
   // セッションが存在している & サブスク契約している場合
   const showManageSubscriptionButton = !!session && !!user?.isSubscribed;
@@ -31,7 +31,7 @@ export default async function MembershipPage() {
         heading="Membership"
         description="もっと見たい・応援したいあなたへ"
       />
-      <div className="mt-16 flex flex-row gap-8 justify-center">
+      <div className="mt-16 flex flex-col md:flex-row gap-8 justify-center">
         {plans.map((plan) => (
           <BenefitPlanCard key={plan.id} plan={plan}>
             <SubscriptionButton

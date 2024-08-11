@@ -43,31 +43,31 @@ export const AuthOptions: NextAuthOptions = {
       return session;
     },
     // サインイン後にAPIエンドポイントを叩く
-    // async signIn({ user }) {
-    //   try {
-    //     const apiUrl = `${process.env.NEXTAUTH_URL}/api/create-stripe-customer?API_ROUTE_SECRET=${process.env.API_ROUTE_SECRET}`;
-    //     const response = await fetch(apiUrl, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         record: {
-    //           id: user.id,
-    //           email: user.email,
-    //         },
-    //       }),
-    //     });
-    //     const data = await response.json();
-    //     if (!response.ok) {
-    //       throw new Error(data.message || "API call failed");
-    //     }
-    //     console.log("API呼び出し成功", data);
-    //   } catch (error) {
-    //     console.error("API呼び出し失敗", error);
-    //   }
-    //   return true;
-    // },
+    async signIn({ user }) {
+      try {
+        const apiUrl = `${process.env.NEXTAUTH_URL}/api/create-stripe-customer?API_ROUTE_SECRET=${process.env.API_ROUTE_SECRET}`;
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            record: {
+              id: user.id,
+              email: user.email,
+            },
+          }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || "API call failed");
+        }
+        console.log("API呼び出し成功", data);
+      } catch (error) {
+        console.error("API呼び出し失敗", error);
+      }
+      return true;
+    },
   },
   // セッション管理をJWTに切替
   session: {
