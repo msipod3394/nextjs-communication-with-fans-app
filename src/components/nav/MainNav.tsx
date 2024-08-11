@@ -1,4 +1,5 @@
 "use client";
+import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import Link from "next/link";
 import { useState } from "react";
@@ -19,11 +20,16 @@ export const MainNav = ({ items }: MainNavProps) => {
       <nav className="md:flex gap-6 hidden justify-between">
         <div className="md:flex gap-6">
           {items.map(
-            (item) =>
+            (item, index) =>
               !item.disabled && (
-                <Link key={item.title} href={item.href} className="text-sm">
-                  {item.title}
-                </Link>
+                <li key={index}>
+                  <Link
+                    href={item.href}
+                    className={`text-sm ${styles.animeUnderline}`}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
               )
           )}
         </div>

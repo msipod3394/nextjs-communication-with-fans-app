@@ -7,12 +7,13 @@ import { UserNav } from "./UserNav";
 export default async function Header() {
   // セッション取得
   const session = await getServerSession(AuthOptions);
+  console.log(session);
 
   return (
     <header className="z-100 bg-black text-white px-6 fixed w-full z-40">
       <div className="flex h-20 py-6 justify-between items-center">
         <MainNav items={NavItem.mainNav} />
-        {session && <UserNav items={NavItem.loginUserNav} session={session} />}
+        <UserNav items={NavItem.loginUserNav} session={session} />
       </div>
     </header>
   );
