@@ -11,7 +11,9 @@ export default async function SuccessPage() {
       />
 
       <div className="mt-16 grid gap-4 w-20">
-        <Button>プレミアムコンテンツを見る</Button>
+        <Button>
+          <Link href={"/works"}>プレミアムコンテンツを見る</Link>
+        </Button>
         <Button>
           <Link href={"/subscribe"}>メンバーシップ管理</Link>
         </Button>
