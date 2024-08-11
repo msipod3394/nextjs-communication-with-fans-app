@@ -18,16 +18,14 @@ export default async function SubscribePage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="メンバーシップ管理" description="" />
-      <p className="text-md text-gray-700">
+      <p className="text-md text-gray-300">
         メンバーシップ登録をすることで、非公開の投稿を閲覧することができます。
       </p>
-      <div>
+      <div className="">
         {user?.isSubscribed ? (
-          <div className="mt-4 flex flex-col gap-4">
-            <h3 className="text-lg font-semibold">契約中のプラン</h3>
+          <div className="mt-4 flex flex-row gap-4">
             {plans.map((plan) => {
               const isSubscribed = plan.id === user.stripeSubscriptionId;
-
               return (
                 <BenefitPlanCard
                   key={plan.id}
@@ -54,9 +52,7 @@ export default async function SubscribePage() {
           <div className="mt-4 flex flex-col gap-4">
             <p>現在、契約中のプランはありません。</p>
             <Link href="/membership" passHref>
-              <Button className="w-[220px] text-white hover:bg-blue-700">
-                メンバーシップに登録する
-              </Button>
+              <Button className="w-[220px]">メンバーシップに登録する</Button>
             </Link>
           </div>
         )}

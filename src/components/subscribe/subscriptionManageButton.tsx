@@ -12,7 +12,6 @@ export const SubscriptionManageButton = () => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/portal`
     );
     const data = await response.json();
-
     router.push(data.url);
   };
 

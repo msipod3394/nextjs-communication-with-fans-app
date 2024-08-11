@@ -1,9 +1,8 @@
 "use client";
-import { User } from "@prisma/client";
+import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { Session } from "next-auth";
 
 type AuthClientButtonProps = {
   session: Session | null;
@@ -16,11 +15,9 @@ export const AuthClientButton = ({ session }: AuthClientButtonProps) => {
   return (
     <div>
       {session ? (
-        <>
-          <Button variant="outline" onClick={() => signOut()}>
-            ログアウト
-          </Button>
-        </>
+        <Button variant="outline" onClick={() => signOut()}>
+          ログアウト
+        </Button>
       ) : (
         <Link href="/login">
           <Button variant="outline">ログイン</Button>
