@@ -60,7 +60,7 @@ export const SubscriptionButton = ({
               : () => SignupSubscription(planId)
           }
         >
-          {isRegistered ? "ただいま契約中です" : "メンバーシップ変更"}
+          {isRegistered ? "ただいま契約中、キャンセルはこちら" : "メンバーシップ変更"}
         </Button>
       )}
       {showCreateAccountButton && (
