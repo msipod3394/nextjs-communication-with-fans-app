@@ -1,14 +1,5 @@
 "use client";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -20,6 +11,7 @@ import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { DeleteConfirmationDialog } from "../editor/DeleteConfirmationDialog";
 import { Icon } from "../icon/icon";
 
 interface PostOperationsProps {
@@ -55,32 +47,13 @@ export const PostOperations = ({ post }: PostOperationsProps) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>この記事を削除しますか？</AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>キャンセル</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-red-600 hover:bg-red-700"
-              onClick={async (e) => {
-                e.preventDefault();
-                setIsDeleting(true);
-                await handleDelete(e);
-                setIsDeleting(false);
-              }}
-            >
-              {isDeleting ? (
-                <Icon.spinner className="w-4 h-4 mr-1 animate-spin" />
-              ) : (
-                <Icon.trash className="w-4 h-4 mr-1" />
-              )}
-              削除する
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      {/* 削除確認ダイアログ */}
+      <DeleteConfirmationDialog
+        open={showDeleteAlert}
+        onClose={() => setShowDeleteAlert(false)}
+        onDelete={handleDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };

@@ -32,12 +32,11 @@ export function useHandleDelete(
 ) {
   const router = useRouter();
 
-  const handleDelete = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleDelete = async () => {
     const deleted = await deletePost(postId);
+
     if (deleted) {
       setShowDeleteAlert(false);
-      router.refresh();
       router.push("/dashboard");
     }
   };

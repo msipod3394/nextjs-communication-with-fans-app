@@ -1,9 +1,19 @@
 "use client";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   PostFormSchema,
   PostFormSchemaType,
 } from "@/lib/editor/postFormSchema";
 import { cn } from "@/lib/utils";
+import { useHandleDelete } from "@/utils/postOperations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -13,6 +23,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Icon } from "../icon/icon";
 import { Button, buttonVariants } from "../ui/button";
 import { toast } from "../ui/use-toast";
+import { DeleteConfirmationDialog } from "./DeleteConfirmationDialog";
 
 type EditorProps = {
   post: Post;
@@ -23,6 +34,8 @@ export default function Editor({ post }: EditorProps) {
 
   // 保存中（API通信中）の状態管理
   const [isSaving, setIsSaving] = useState<boolean>(false);
+
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   // RHFで状態・バリデーション管理
   const {
@@ -70,6 +83,10 @@ export default function Editor({ post }: EditorProps) {
     });
   };
 
+  // 投稿を破棄
+  const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
+  const handleDelete = useHandleDelete(post.id, setShowDeleteAlert);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-8 mb-16">
@@ -98,11 +115,23 @@ export default function Editor({ post }: EditorProps) {
           {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
           <span>メモを保存</span>
         </Button>
-        <Button className={cn(buttonVariants())} type="submit">
+        <Button
+          className={cn(buttonVariants())}
+          type="button"
+          onClick={() => setShowDeleteAlert(true)}
+        >
           {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
           <span>投稿を破棄</span>
         </Button>
       </div>
+
+      {/* 削除確認ダイアログ */}
+      <DeleteConfirmationDialog
+        open={showDeleteAlert}
+        onClose={() => setShowDeleteAlert(false)}
+        onDelete={handleDelete}
+        isDeleting={isDeleting}
+      />
     </form>
   );
 }
