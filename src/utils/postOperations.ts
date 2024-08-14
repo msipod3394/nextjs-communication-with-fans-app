@@ -37,6 +37,7 @@ export function useHandleDelete(
 
     if (deleted) {
       setShowDeleteAlert(false);
+      router.refresh();
       router.push("/dashboard");
     }
   };

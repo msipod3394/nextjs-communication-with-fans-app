@@ -116,12 +116,12 @@ export default function Editor({ post }: EditorProps) {
           <span>メモを保存</span>
         </Button>
         <Button
-          className={cn(buttonVariants())}
+          className={cn(buttonVariants({ variant: "outline" }))}
           type="button"
           onClick={() => setShowDeleteAlert(true)}
         >
           {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
-          <span>投稿を破棄</span>
+          <span>保存せず終了</span>
         </Button>
       </div>
 
