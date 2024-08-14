@@ -5,7 +5,7 @@ export const PostFormSchema = z.object({
   title: z
     .string()
     .min(1, {
-      message: "タイトルは1文字以上で入力してください",
+      message: "タイトルの入力は必須です",
     })
     .max(120, {
       message: "タイトルは120文字以内で入力してください",

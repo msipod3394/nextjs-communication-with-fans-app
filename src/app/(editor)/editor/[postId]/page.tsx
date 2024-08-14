@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { getUserCurrent } from "@/lib/session";
 import { getUserData } from "@/utils/getUserData";
 import { Post, User } from "@prisma/client";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 // 詳細記事のデータ取得
 async function getPostForUser(postId: Post["id"], userId: User["id"]) {
@@ -35,7 +35,7 @@ export default async function EditorPage({ params }: EditorProps) {
   const post = await getPostForUser(postId, userId);
 
   if (!post) {
-    notFound();
+    redirect("/dashboard");
   }
 
   return (

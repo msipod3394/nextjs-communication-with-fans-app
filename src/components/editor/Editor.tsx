@@ -87,8 +87,11 @@ export default function Editor({ post }: EditorProps) {
             {...register("title")}
             placeholder="タイトルを入力してください"
             defaultValue={post.title}
-            className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
+            className="w-full resize-none overflow-hidden bg-transparent text-2xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           ></TextareaAutosize>
+          {errors.title && (
+            <p className="text-red-500 text-sm mt-2">{errors.title.message}</p>
+          )}
         </div>
         <div className="max-w-[800px]">
           <TextareaAutosize
@@ -99,6 +102,11 @@ export default function Editor({ post }: EditorProps) {
             minRows={10}
             className="w-full resize-none overflow-hidden bg-transparent text-base text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           />
+          {errors.content && (
+            <p className="text-red-500 text-sm mt-2">
+              {errors.content.message}
+            </p>
+          )}
         </div>
       </div>
       <div className="flex items-center gap-6">
@@ -107,12 +115,12 @@ export default function Editor({ post }: EditorProps) {
           <span>メモを保存</span>
         </Button>
         <Button
-          className={cn(buttonVariants({ variant: "outline" }))}
+          className={cn(buttonVariants({ variant: "destructive" }))}
           type="button"
           onClick={() => setShowDeleteAlert(true)}
         >
           {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
-          <span>保存せず終了</span>
+          <span className="text-white">投稿を削除</span>
         </Button>
       </div>
 

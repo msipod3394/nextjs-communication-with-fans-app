@@ -194,7 +194,7 @@ export default function UploadImage({ userId, postId }: UploadImageProps) {
       <form className="mb-4 text-center" onSubmit={onSubmit}>
         <div className="relative mb-8">
           <input
-            className="relative mb-4 block w-full min-w-0 flex-auto border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.3rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
+            className="relative mb-4 block w-full min-w-0 flex-auto border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.3rem] text-base font-normal text-gray-200 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.3rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.3rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-500 focus:shadow-te-primary focus:outline-none"
             type="file"
             id="formFile"
             accept="image/*"

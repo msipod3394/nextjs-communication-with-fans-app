@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
   try {
     // セッション取得
     const session = await getServerSession(AuthOptions);
+
     // セッションがなければ、403エラーを返す
     if (!session) {
       return NextResponse.json("アクセス権限がありません", { status: 403 });
