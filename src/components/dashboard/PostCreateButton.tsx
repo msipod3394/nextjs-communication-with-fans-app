@@ -28,7 +28,8 @@ export const PostCreateButton = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "イベント名",
+        title: "作品名",
+        content: "",
       }),
     });
 
