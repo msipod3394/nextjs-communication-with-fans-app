@@ -35,8 +35,6 @@ export default function Editor({ post }: EditorProps) {
 
   const onSubmit = async (data: PostFormSchemaType) => {
     // コンテンツ情報の取得
-    const block = await ref.current?.save();
-    // console.log("block", block);
     setIsSaving(true);
 
     // 更新用のAPI送信
