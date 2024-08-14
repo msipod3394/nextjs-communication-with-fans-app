@@ -72,13 +72,13 @@ export default function Editor({ post }: EditorProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-8 mb-24">
+      <div className="grid gap-8 mb-16">
         <div className="max-w-[800px]">
           <TextareaAutosize
             id="title"
             {...register("title")}
             placeholder="タイトルを入力してください"
-            defaultValue=""
+            defaultValue={post.title}
             className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           ></TextareaAutosize>
         </div>
@@ -93,10 +93,16 @@ export default function Editor({ post }: EditorProps) {
           />
         </div>
       </div>
-      <Button className={cn(buttonVariants())} type="submit">
-        {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
-        <span>メモを保存</span>
-      </Button>
+      <div className="flex items-center gap-6">
+        <Button className={cn(buttonVariants())} type="submit">
+          {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
+          <span>メモを保存</span>
+        </Button>
+        <Button className={cn(buttonVariants())} type="submit">
+          {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
+          <span>投稿を破棄</span>
+        </Button>
+      </div>
     </form>
   );
 }
