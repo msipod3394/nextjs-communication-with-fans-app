@@ -1,19 +1,10 @@
 "use client";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import { useHandleDelete } from "@/hooks/useHandleDelete";
 import {
   PostFormSchema,
   PostFormSchemaType,
 } from "@/lib/editor/postFormSchema";
 import { cn } from "@/lib/utils";
-import { useHandleDelete } from "@/utils/postOperations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
 import { useRouter } from "next/navigation";

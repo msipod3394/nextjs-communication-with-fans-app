@@ -17,10 +17,7 @@ async function deletePost(postId: string) {
       title: "削除完了",
       description: "記事を削除しました。",
     });
-
-    router.refresh();
-    router.push("/dashboard");
-
+    
     return true;
   } catch (error) {
     console.error("削除エラー:", error);
@@ -45,6 +42,9 @@ export function useHandleDelete(
 
     if (deleted) {
       setShowDeleteAlert(false);
+
+      router.refresh();
+      router.push(`/dashboard`);
     }
   };
 

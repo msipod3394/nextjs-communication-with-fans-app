@@ -6,7 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useHandleDelete } from "@/utils/postOperations";
+import { useHandleDelete } from "@/hooks/useHandleDelete";
 import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
