@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     const post = await db.post.create({
       data: {
         title,
-        content,
+        content: content ?? "",
         authorId: user.id,
       },
       // idだけ取得

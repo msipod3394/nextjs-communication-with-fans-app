@@ -22,7 +22,7 @@ export const PostCreateButton = ({
     setIsLoading(true);
 
     // PostsAPIの実行
-    const response = await fetch("api/posts", {
+    const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
