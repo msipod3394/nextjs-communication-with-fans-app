@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "pbs.twimg.com",
-      "images.microcms-assets.io",
-      "ktkpvglkwuinpetxlemb.supabase.co",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.microcms-assets.io",
+      },
+      {
+        protocol: "https",
+        hostname: "ktkpvglkwuinpetxlemb.supabase.co",
+      },
     ],
   },
 };
