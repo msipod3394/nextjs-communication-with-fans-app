@@ -1,50 +1,37 @@
 import { toast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
 
 // 投稿削除関数
 async function deletePost(postId: string) {
-  try {
-    // 削除用のAPI送信
-    const response = await fetch(`/api/posts/${postId}`, {
-      method: "DELETE",
-    });
+  const response = await fetch(`/api/posts/${postId}`, {
+    method: "DELETE",
+  });
 
-    if (!response.ok) {
-      throw new Error();
-    }
-
-    toast({
-      title: "削除完了",
-      description: "記事を削除しました。",
-    });
-    
-    return true;
-  } catch (error) {
-    console.error("削除エラー:", error);
-
-    toast({
-      title: "削除エラー",
-      description: "記事の削除できませんでした。もう一度お試しください。",
-      variant: "destructive",
-    });
+  if (!response.ok) {
+    throw new Error("削除エラー");
   }
 }
 
 // 削除処理のハンドラー
 export function useHandleDelete(
   postId: string,
-  setShowDeleteAlert: (value: boolean) => void
+  setShowDeleteAlert: (value: boolean) => void,
+  refreshData: () => void
 ) {
-  const router = useRouter();
-
   const handleDelete = async () => {
-    const deleted = await deletePost(postId);
-
-    if (deleted) {
+    try {
+      await deletePost(postId);
+      toast({
+        title: "削除完了",
+        description: "記事を削除しました。",
+      });
       setShowDeleteAlert(false);
-
-      router.refresh();
-      router.push(`/dashboard`);
+      refreshData(); // データ更新のコールバック
+    } catch {
+      toast({
+        title: "削除エラー",
+        description: "記事の削除できませんでした。もう一度お試しください。",
+        variant: "destructive",
+      });
     }
   };
 
