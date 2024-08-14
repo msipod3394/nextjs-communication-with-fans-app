@@ -11,7 +11,12 @@ export const PostFormSchema = z.object({
       message: "タイトルは120文字以内で入力してください",
     }),
   // 本文（オプション）
-  content: z.any().optional(),
+  content: z
+    .string()
+    .max(200, {
+      message: "本文は200文字以内で入力してください",
+    })
+    .optional(),
 });
 
 // z.inferでPostFormSchemaの型を抽出

@@ -86,7 +86,7 @@ model VerificationRequest {
 model Post {
   id        String   @id @default(cuid()) // 主キー設定
   title     String
-  content   Json?
+  content   String
   published Boolean  @default(true)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")

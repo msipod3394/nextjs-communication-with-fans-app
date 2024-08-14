@@ -4,11 +4,10 @@ import {
   PostFormSchemaType,
 } from "@/lib/editor/postFormSchema";
 import { cn } from "@/lib/utils";
-import EditorJS from "@editorjs/editorjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import { Icon } from "../icon/icon";
@@ -20,56 +19,10 @@ type EditorProps = {
 };
 
 export default function Editor({ post }: EditorProps) {
-  const ref = useRef<EditorJS>();
   const router = useRouter();
 
   // 保存中（API通信中）の状態管理
   const [isSaving, setIsSaving] = useState<boolean>(false);
-
-  // マウントしたかの状態管理
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-
-  // EditorJSのインスタンス化
-  const initializeEditor = useCallback(async () => {
-    // 型を検証
-    const body = PostFormSchema.parse(post);
-
-    const editor = new EditorJS({
-      holder: "editor",
-      onReady() {
-        ref.current = editor;
-      },
-      placeholder: "メモを残すことができます",
-      data: body.content,
-      inlineToolbar: true,
-      // tools: {
-      //   header: Header,
-      //   list: {
-      //     class: List,
-      //     inlineToolbar: true,
-      //   },
-      //   // linkTool: LinkTool,
-      // },
-    });
-    return editor;
-  }, [post]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsMounted(true);
-    }
-  }, []);
-
-  // 初回ロード時に発火
-  useEffect(() => {
-    if (isMounted) {
-      initializeEditor();
-    }
-    return () => {
-      ref.current?.destroy();
-      ref.current = undefined;
-    };
-  }, [isMounted, initializeEditor]);
 
   // RHFで状態・バリデーション管理
   const {
@@ -94,7 +47,7 @@ export default function Editor({ post }: EditorProps) {
       },
       body: JSON.stringify({
         title: data.title,
-        content: block,
+        content: data.content,
       }),
     });
 
@@ -131,7 +84,15 @@ export default function Editor({ post }: EditorProps) {
             className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           ></TextareaAutosize>
         </div>
-        <div id="editor" className=""></div>
+        <div className="max-w-[800px]">
+          <TextareaAutosize
+            id="content"
+            {...register("content")}
+            placeholder="テキストを入力してください"
+            minRows={10}
+            className="w-full resize-none overflow-hidden bg-transparent text-base text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
+          />
+        </div>
       </div>
       <Button className={cn(buttonVariants())} type="submit">
         {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
