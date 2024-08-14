@@ -2,6 +2,7 @@
 import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Icon } from "../icon/icon";
 import { Button } from "../ui/button";
@@ -12,6 +13,10 @@ type MainNavProps = {
 };
 
 export const MainNav = ({ items }: MainNavProps) => {
+  // カレントページにハイライト
+  const path = usePathname();
+  console.log(path);
+
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
@@ -25,7 +30,9 @@ export const MainNav = ({ items }: MainNavProps) => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className={`text-sm ${styles.animeUnderline}`}
+                    className={`text-sm ${styles.animeUnderline} ${
+                      path === item.href ? styles.isCurrent : ""
+                    }`}
                   >
                     {item.title}
                   </Link>
