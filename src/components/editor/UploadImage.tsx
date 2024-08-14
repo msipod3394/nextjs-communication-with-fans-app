@@ -190,14 +190,23 @@ export default function UploadImage({ userId, postId }: UploadImageProps) {
 
   return (
     <>
+      {/* 画像登録 */}
       <form className="mb-4 text-center" onSubmit={onSubmit}>
-        <input
-          className="relative mb-4 block w-full min-w-0 flex-auto border border-solid border-neutral-300 bg-clip-padding px-3 text-base font-normal text-neutral-600 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
-          type="file"
-          id="formFile"
-          accept="image/*"
-          onChange={handleChangeFile}
-        />
+        <div className="relative">
+          <input
+            className="block w-full text-sm text-gray-700 file:border-0 file:bg-gray-200 file:py-2 file:px-4 file:rounded-md file:text-gray-700 file:cursor-pointer file:hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            type="file"
+            id="formFile"
+            accept="image/*"
+            onChange={handleChangeFile}
+          />
+          <label
+            htmlFor="formFile"
+            className="absolute inset-0 flex items-center justify-center text-gray-600 cursor-pointer"
+          >
+            画像を選択
+          </label>
+        </div>
         <Button
           className={cn(buttonVariants())}
           type="submit"
@@ -207,6 +216,7 @@ export default function UploadImage({ userId, postId }: UploadImageProps) {
           <span>画像を登録</span>
         </Button>
       </form>
+      { /* 登録画像一覧 */}
       <ul className="grid gap-10 my-12 sm:grid-cols-2 md:grid-cols-3">
         {urlList.map((item) => (
           <li key={item} className="group relative flex flex-col">

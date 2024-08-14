@@ -72,13 +72,13 @@ export default function Editor({ post }: EditorProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-8">
+      <div className="grid gap-8 mb-24">
         <div className="max-w-[800px]">
           <TextareaAutosize
             id="title"
             {...register("title")}
             placeholder="タイトルを入力してください"
-            defaultValue={post.title}
+            defaultValue=""
             className="w-full resize-none overflow-hidden bg-transparent text-3xl font-bold text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           ></TextareaAutosize>
         </div>
@@ -87,6 +87,7 @@ export default function Editor({ post }: EditorProps) {
             id="content"
             {...register("content")}
             placeholder="テキストを入力してください"
+            defaultValue={post.content}
             minRows={10}
             className="w-full resize-none overflow-hidden bg-transparent text-base text-gray-100 leading-normal tracking-wide focus:outline-none border-b py-4"
           />
