@@ -1,4 +1,5 @@
 "use client";
+import { fontRoboto } from "@/configs/font";
 import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import { Session } from "next-auth";
@@ -22,7 +23,7 @@ export const UserNav = ({ items, session }: UserNavProps) => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className={`text-sm ${styles.animeUnderline}`}
+                    className={`${fontRoboto.className} text-md font-semibold ${styles.animeUnderline}`}
                   >
                     {item.title}
                   </Link>

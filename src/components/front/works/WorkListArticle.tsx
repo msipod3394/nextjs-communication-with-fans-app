@@ -1,3 +1,4 @@
+import { fontRoboto } from "@/configs/font";
 import { WorksContents } from "@/types/cms";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -8,7 +9,7 @@ type WorkListArticleProps = {
 };
 
 export const WorkListArticle = ({ content }: WorkListArticleProps) => {
-  console.log(content);
+  // console.log(content);
 
   return (
     <article className="group relative flex flex-col space-y-4">
@@ -27,14 +28,16 @@ export const WorkListArticle = ({ content }: WorkListArticleProps) => {
           className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center"
         >
           <div className="flex flex-col gap-2 text-center">
-            <span className="block text-lg text-white transition-all duration-300 ease-in-out group-hover:tracking-widest">
+            <span
+              className={`${fontRoboto.className} block text-xl font-semibold text-white transition-all duration-300 ease-in-out group-hover:tracking-widest`}
+            >
               View More
             </span>
           </div>
         </Link>
       </div>
       <div className="space-y-2">
-        <h2 className="text-sm sm:text-md font-semibold">{content.title}</h2>
+        <h2 className="text-sm sm:text-lg font-semibold">{content.title}</h2>
         <p className="text-sm text-muted-foreground">
           {format(new Date(content.createdAt), "yyyy/MM/dd")}
         </p>

@@ -1,6 +1,7 @@
 import { WorkImages } from "@/components/front/works/WorkImages";
 import { Icon } from "@/components/icon/icon";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { fontRoboto } from "@/configs/font";
 import { microcmsClient } from "@/lib/microcmsClient";
 import { getUserCurrent } from "@/lib/session";
 import { cn } from "@/lib/utils";
@@ -126,8 +127,10 @@ export default async function WorksDetailPage({ params }: Params) {
           href="/works"
           className={cn(buttonVariants({ variant: "outline" }))}
         >
-          <Icon.chevronLeft className="w-4 h-4 mr-2" />
-          Back to Works
+          <Icon.chevronLeft className="w-4 h-4 mr-1" />
+          <span className={`${fontRoboto.className} text-md`}>
+            Back to List
+          </span>
         </Link>
       </div>
     </>

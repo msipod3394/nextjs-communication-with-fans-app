@@ -2,6 +2,7 @@
 import { FrontHeading } from "@/components/dashboard/FrontHeading";
 import { Icon } from "@/components/icon/icon";
 import { buttonVariants } from "@/components/ui/button";
+import { fontRoboto } from "@/configs/font";
 import { useContactFormContext } from "@/contexts/ContactFormContext"; // コンテキストをインポート
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -28,8 +29,8 @@ export default function ContactPage() {
       )}
       <div className="mt-8 flex justify-center py-6 lg:py-10">
         <Link href="/" className={cn(buttonVariants({ variant: "outline" }))}>
-          <Icon.chevronLeft className="w-4 h-4 mr-2" />
-          Back to Top
+          <Icon.chevronLeft className="w-4 h-4 mr-1" />
+          <span className={`${fontRoboto.className} text-md`}>Back to Top</span>
         </Link>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { fontRoboto } from "@/configs/font";
 import { siteConfig } from "@/configs/site";
 import { Icon } from "../icon/icon";
 import { SnsList } from "./SnsList";
@@ -23,7 +24,7 @@ export default function Footer() {
           dangerouslySetInnerHTML={{ __html: siteConfig.footer.caution }}
         />
         <p
-          className="text-center md:text-right text-xs"
+          className={`text-center md:text-right text-xs ${fontRoboto.className}`}
           dangerouslySetInnerHTML={{ __html: siteConfig.footer.copyright }}
         />
       </div>

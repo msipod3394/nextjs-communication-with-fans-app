@@ -1,3 +1,4 @@
+import { fontRoboto } from "@/configs/font";
 import { WorksContents } from "@/types/cms";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +26,9 @@ export const HeroSliderItem = ({ content }: HeroSliderItemProps) => (
         <h2 className="text-2xl font-semibold text-white transition-all duration-300 ease-in-out group-hover:tracking-widest">
           {content.title}
         </h2>
-        <span className="block text-lg text-white transition-all duration-300 ease-in-out group-hover:tracking-widest">
+        <span
+          className={`${fontRoboto.className} block text-xl font-semibold text-white transition-all duration-300 ease-in-out group-hover:tracking-widest`}
+        >
           View More
         </span>
       </div>

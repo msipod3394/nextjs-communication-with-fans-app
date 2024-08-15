@@ -1,3 +1,5 @@
+import { fontRoboto } from "@/configs/font";
+
 type FrontHeadingProps = {
   heading: string;
   description?: string;
@@ -12,7 +14,11 @@ export const FrontHeading = ({
   return (
     <div className="flex items-center justify-between">
       <div className="grid gap-4">
-        <h1 className="text-2xl font-semibold md:text-3xl">{heading}</h1>
+        <h1
+          className={`${fontRoboto.className} text-3xl font-semibold md:text-4xl`}
+        >
+          {heading}
+        </h1>
         {description && (
           <p className="text-sm text-muted-foreground">{description}</p>
         )}

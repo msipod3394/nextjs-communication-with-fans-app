@@ -1,4 +1,5 @@
 "use client";
+import { fontRoboto } from "@/configs/font";
 import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import Link from "next/link";
@@ -30,9 +31,9 @@ export const MainNav = ({ items }: MainNavProps) => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className={`text-sm ${styles.animeUnderline} ${
-                      path === item.href ? styles.isCurrent : ""
-                    }`}
+                    className={`${fontRoboto.className} text-md font-semibold ${
+                      styles.animeUnderline
+                    } ${path === item.href ? styles.isCurrent : ""}`}
                   >
                     {item.title}
                   </Link>

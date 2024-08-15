@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { fontRoboto } from "@/configs/font";
 import { getBenefitsByPlan } from "@/configs/membershipBenefits";
 import { Plan } from "@/types/plan";
 import { ReactNode } from "react";
@@ -39,7 +40,9 @@ export const BenefitPlanCard = ({
     >
       <div>
         <CardHeader className="grid gap-1">
-          <CardTitle>{plan.name}</CardTitle>
+          <CardTitle className={`${fontRoboto.className} text-2xl md:text-3xl`}>
+            {plan.name}
+          </CardTitle>
           <CardDescription className="text-md text-bold">
             {interval}額 {plan.price} 円
           </CardDescription>
