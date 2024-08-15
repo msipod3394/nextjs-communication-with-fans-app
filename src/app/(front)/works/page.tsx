@@ -5,7 +5,7 @@ import { WorksContentsList } from "@/types/cms";
 
 export default async function WorksPage() {
   const contentList: WorksContentsList = await microcmsClient.get({
-    endpoint: "works",
+    endpoint: "e5gfdwcn",
   });
   return (
     <div>

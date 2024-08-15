@@ -25,7 +25,7 @@ export default async function WorksDetailPage({ params }: Params) {
     [content, session, user] = await Promise.all([
       // コンテンツの取得
       microcmsClient.get<WorksContents>({
-        endpoint: "works",
+        endpoint: "e5gfdwcn",
         contentId,
       }),
       // ユーザーセッションの取得

@@ -1,10 +1,20 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Icon } from "../icon/icon";
 import { Button } from "../ui/button";
 
 export const AuthLogin = () => {
+  const router = useRouter();
+
+  // ログインに成功したら、パラメーターを渡す
+  const handleLogin = async (provider: string) => {
+    await signIn(provider, {
+      callbackUrl: "/dashboard?login=success",
+    });
+  };
+
   // 認証状況の状態管理
   const [isGitHubLoading, setIsGitHubLoading] = useState<boolean>(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
@@ -27,7 +37,7 @@ export const AuthLogin = () => {
             variant="outline"
             onClick={() => {
               setIsGitHubLoading(true);
-              signIn("github");
+              handleLogin("github");
             }}
           >
             {isGitHubLoading ? (
@@ -55,7 +65,7 @@ export const AuthLogin = () => {
             variant="outline"
             onClick={() => {
               setIsGoogleLoading(true);
-              signIn("google");
+              handleLogin("google");
             }}
           >
             {isGoogleLoading ? (

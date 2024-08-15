@@ -44,7 +44,8 @@ export const AuthOptions: NextAuthOptions = {
     },
     // サインイン後にAPIエンドポイントを叩く
     async signIn({ user }) {
-      console.log("is signIn", user);
+      // console.log("is signIn", user);
+
       try {
         const apiUrl = `${process.env.NEXTAUTH_URL}/api/create-stripe-customer?API_ROUTE_SECRET=${process.env.API_ROUTE_SECRET}`;
         const response = await fetch(apiUrl, {
@@ -64,9 +65,9 @@ export const AuthOptions: NextAuthOptions = {
         if (!response.ok) {
           throw new Error(data.message || "API call failed");
         }
-        console.log("API呼び出し成功", data);
+        // console.log("API呼び出し成功", data);
       } catch (error) {
-        console.error("API呼び出し失敗", error);
+        // console.error("API呼び出し失敗", error);
       }
       return true;
     },

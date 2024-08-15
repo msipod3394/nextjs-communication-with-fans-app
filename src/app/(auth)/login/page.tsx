@@ -11,7 +11,6 @@ export default function Login() {
             いずれかの認証方法でログインしてください。
           </p>
         </div>
-        {/* <LoginForm /> */}
         <AuthLogin />
         <p className="px-6 text-center text-sm text-muted-foreground">
           <Link

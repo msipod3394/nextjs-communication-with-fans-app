@@ -1,3 +1,4 @@
+import AuthNotifications from "@/components/auth/AuthNotifications";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { PostCreateButton } from "@/components/dashboard/PostCreateButton";
@@ -34,28 +35,31 @@ export default async function DashboardPage() {
   });
 
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="写真投稿"
-        description="イベントで撮影した写真をシェアすることができます"
-      >
-        <PostCreateButton />
-      </DashboardHeader>
-      <div>
-        {posts.length ? (
-          <div className="divide-y border rounded-md">
-            {posts.map((post) => (
-              <PostItem key={post.id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-1">
-            <p className="font-semibold text-gray-100">
-              写真を投稿してみましょう！
-            </p>
-          </div>
-        )}
-      </div>
-    </DashboardShell>
+    <>
+      <DashboardShell>
+        <DashboardHeader
+          heading="写真投稿"
+          description="イベントで撮影した写真をシェアすることができます"
+        >
+          <PostCreateButton />
+        </DashboardHeader>
+        <div>
+          {posts.length ? (
+            <div className="divide-y border rounded-md">
+              {posts.map((post) => (
+                <PostItem key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-1">
+              <p className="font-semibold text-gray-100">
+                写真を投稿してみましょう！
+              </p>
+            </div>
+          )}
+        </div>
+      </DashboardShell>
+          {/* <AuthNotifications /> */}
+    </>
   );
 }
