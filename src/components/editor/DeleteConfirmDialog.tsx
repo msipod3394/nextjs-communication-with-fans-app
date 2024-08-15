@@ -11,19 +11,19 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Icon } from "../icon/icon";
 
-interface DeleteConfirmationDialogProps {
+interface DeleteConfirmDialogProps {
   open: boolean;
   onClose: () => void;
   onDelete: () => void;
   isDeleting: boolean;
 }
 
-export const DeleteConfirmationDialog = ({
+export const DeleteConfirmDialog = ({
   open,
   onClose,
   onDelete,
   isDeleting,
-}: DeleteConfirmationDialogProps) => {
+}: DeleteConfirmDialogProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onClose}>
       <AlertDialogContent>

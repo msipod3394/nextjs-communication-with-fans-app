@@ -11,7 +11,7 @@ import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { DeleteConfirmationDialog } from "../editor/DeleteConfirmationDialog";
+import { DeleteConfirmDialog } from "../editor/DeleteConfirmDialog";
 import { Icon } from "../icon/icon";
 
 interface PostOperationsProps {
@@ -50,7 +50,7 @@ export const PostOperations = ({ post }: PostOperationsProps) => {
       </DropdownMenu>
 
       {/* 削除確認ダイアログ */}
-      <DeleteConfirmationDialog
+      <DeleteConfirmDialog
         open={showDeleteAlert}
         onClose={() => setShowDeleteAlert(false)}
         onDelete={handleDelete}

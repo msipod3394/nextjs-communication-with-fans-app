@@ -11,13 +11,13 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-type Params = {
+type ParamsProps = {
   params: {
     id: string;
   };
 };
 
-export default async function WorksDetailPage({ params }: Params) {
+export default async function WorksDetailPage({ params }: ParamsProps) {
   const contentId = params.id;
   let content: WorksContents;
   let session, user;

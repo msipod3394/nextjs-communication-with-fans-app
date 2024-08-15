@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function POST(req: NextRequest) {
-  console.log("webhook dispatch");
+  // console.log("webhook dispatch");
 
   // stripe初期化
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 
       // 削除時
       case "customer.subscription.deleted":
-        console.log("customer.subscription.deleted");
+        // console.log("customer.subscription.deleted");
         const customerSubscriptionDeleted = event.data.object;
 
         // userテーブルのサブスク状態を false に変更
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
 
       // 更新時
       case "customer.subscription.updated":
-        console.log("customer.subscription.updated");
+        // console.log("customer.subscription.updated");
         const customerSubscriptionUpdated = event.data.object;
 
         if (customerSubscriptionUpdated.status === "canceled") {

@@ -27,7 +27,7 @@ export const useLoginForm = () => {
   // onSubmit
   const onSubmit: SubmitHandler<AuthFormValues> = useCallback(
     (values: AuthFormValues) => {
-      console.log(values);
+      // console.log(values);
     },
     [router]
   );

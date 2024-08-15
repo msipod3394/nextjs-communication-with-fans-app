@@ -40,7 +40,7 @@ export const useSignUpForm = () => {
         });
 
         if (signUpError) {
-          console.log("signUpError");
+          // console.log("signUpError");
           throw signUpError;
         }
 

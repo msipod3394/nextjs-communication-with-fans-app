@@ -14,7 +14,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Icon } from "../icon/icon";
 import { Button, buttonVariants } from "../ui/button";
 import { toast } from "../ui/use-toast";
-import { DeleteConfirmationDialog } from "./DeleteConfirmationDialog";
+import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 
 type EditorProps = {
   post: Post;
@@ -126,7 +126,7 @@ export default function Editor({ post }: EditorProps) {
       </div>
 
       {/* 削除確認ダイアログ */}
-      <DeleteConfirmationDialog
+      <DeleteConfirmDialog
         open={showDeleteAlert}
         onClose={() => setShowDeleteAlert(false)}
         onDelete={handleDelete}

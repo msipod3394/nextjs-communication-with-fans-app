@@ -1,4 +1,3 @@
-import AuthNotifications from "@/components/auth/AuthNotifications";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { PostCreateButton } from "@/components/dashboard/PostCreateButton";
@@ -59,7 +58,7 @@ export default async function DashboardPage() {
           )}
         </div>
       </DashboardShell>
-          {/* <AuthNotifications /> */}
+      {/* <AuthNotifications /> */}
     </>
   );
 }

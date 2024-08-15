@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     const body = imageCreateSchema.parse(json);
     const { userId, postId, imageName, imageUrl } = body;
 
-    console.log(userId, postId, imageName, imageUrl);
+    // console.log(userId, postId, imageName, imageUrl);
 
     // DBに新規作成
     const createImage = await db.images.create({

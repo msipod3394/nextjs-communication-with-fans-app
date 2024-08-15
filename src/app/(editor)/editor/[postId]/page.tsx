@@ -6,6 +6,10 @@ import { getUserData } from "@/utils/getUserData";
 import { Post, User } from "@prisma/client";
 import { redirect } from "next/navigation";
 
+type EditorProps = {
+  params: { postId: string };
+};
+
 // 詳細記事のデータ取得
 async function getPostForUser(postId: Post["id"], userId: User["id"]) {
   const post = await db.post.findFirst({
@@ -15,10 +19,6 @@ async function getPostForUser(postId: Post["id"], userId: User["id"]) {
     },
   });
   return post;
-}
-
-interface EditorProps {
-  params: { postId: string };
 }
 
 export default async function EditorPage({ params }: EditorProps) {
@@ -34,6 +34,7 @@ export default async function EditorPage({ params }: EditorProps) {
   // 記事の取得
   const post = await getPostForUser(postId, userId);
 
+  // 投稿がなければ、ダッシュボードにリダイレクト
   if (!post) {
     redirect("/dashboard");
   }

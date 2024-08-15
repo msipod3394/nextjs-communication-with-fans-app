@@ -16,7 +16,6 @@ type MainNavProps = {
 export const MainNav = ({ items }: MainNavProps) => {
   // カレントページにハイライト
   const path = usePathname();
-  console.log(path);
 
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
