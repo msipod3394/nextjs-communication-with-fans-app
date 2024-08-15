@@ -26,6 +26,7 @@ export default function Editor({ post }: EditorProps) {
   // 保存中（API通信中）の状態管理
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
+  // 削除の状態管理
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   // RHFで状態・バリデーション管理

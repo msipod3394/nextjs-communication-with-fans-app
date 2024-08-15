@@ -22,6 +22,9 @@ export const PostOperations = ({ post }: PostOperationsProps) => {
   const router = useRouter();
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
 
+  // 削除の状態管理
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+
   const handleDelete = useHandleDelete(post.id, setShowDeleteAlert);
 
   return (
@@ -51,6 +54,7 @@ export const PostOperations = ({ post }: PostOperationsProps) => {
         open={showDeleteAlert}
         onClose={() => setShowDeleteAlert(false)}
         onDelete={handleDelete}
+        isDeleting={isDeleting}
       />
     </div>
   );

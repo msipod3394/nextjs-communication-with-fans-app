@@ -10,7 +10,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Icon } from "../icon/icon";
-import { Button } from "../ui/button";
 
 interface DeleteConfirmationDialogProps {
   open: boolean;
