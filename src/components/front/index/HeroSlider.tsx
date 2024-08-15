@@ -42,7 +42,7 @@ export const HeroSlider = ({ contents }: HeroSliderProps) => {
   }
 
   // 最新6件まで
-  const limit = 6;
+  // const limit = 6;
 
   return (
     <div
@@ -53,13 +53,11 @@ export const HeroSlider = ({ contents }: HeroSliderProps) => {
         ref={sliderRef}
         {...(isDesktop ? settingsDesktop : settingsMobile)}
       >
-        {contents
-          .slice(0, limit)
-          .map((content) =>
-            content.is_show_top ? (
-              <HeroSliderItem key={content.id} content={content} />
-            ) : null
-          )}
+        {contents.map((content) =>
+          content.is_show_top ? (
+            <HeroSliderItem key={content.id} content={content} />
+          ) : null
+        )}
       </Slider>
     </div>
   );
