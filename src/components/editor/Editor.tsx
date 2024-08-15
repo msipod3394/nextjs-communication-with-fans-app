@@ -120,7 +120,6 @@ export default function Editor({ post }: EditorProps) {
           type="button"
           onClick={() => setShowDeleteAlert(true)}
         >
-          {isSaving && <Icon.spinner className="w-4 h-4 mr-2 animate-spin" />}
           <span className="text-white">投稿を削除</span>
         </Button>
       </div>
