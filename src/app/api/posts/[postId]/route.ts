@@ -1,6 +1,7 @@
 import { AuthOptions } from "@/lib/auth/AuthOptions";
 import { db } from "@/lib/db";
 import { PostFormSchema } from "@/lib/editor/postFormSchema";
+import { supabase } from "@/lib/supabaseClient";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
@@ -61,20 +62,64 @@ export async function DELETE(
     const { params } = routeContextSchema.parse(context);
     const id = params.postId;
 
+    // 画像URL
+    const public_url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/public-image-bucket/`;
+
     // アクセス可能かのチェック
-    if (!(await verifyCurrentUserHasAccessPost(params.postId))) {
+    if (!(await verifyCurrentUserHasAccessPost(id))) {
       return NextResponse.json("アクセス権限がありません", { status: 403 });
     }
 
-    // 記事のアップデート
+    // 削除前に記事データ取得
+    const post = await db.post.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        authorId: true,
+      },
+    });
+
+    if (!post) {
+      return NextResponse.json("記事が見つかりません", { status: 404 });
+    }
+
+    // storageの画像削除
+    const images = await db.images.findMany({
+      where: {
+        userId: post.authorId,
+      },
+      select: {
+        imageUrl: true,
+      },
+    });
+
+    // 画像URLからファイルパスを抽出
+    const filePaths = images.map((image) =>
+      image.imageUrl.replace(public_url, "")
+    );
+
+    if (filePaths.length > 0) {
+      const { error: deleteError } = await supabase.storage
+        .from("public-image-bucket")
+        .remove(filePaths);
+
+      if (deleteError) {
+        console.error("画像削除エラー:", deleteError.message);
+        return NextResponse.json("画像削除エラー", { status: 500 });
+      }
+    }
+
+    // 記事の削除
     await db.post.delete({
       where: {
-        id: params.postId,
+        id,
       },
     });
 
     return new Response(null, { status: 204 });
   } catch (error) {
+    console.error("削除処理中にエラーが発生しました:", error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(error.issues, { status: 422 });
     } else {

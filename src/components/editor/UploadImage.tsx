@@ -64,6 +64,7 @@ export default function UploadImage({ userId, postId }: UploadImageProps) {
   const handleDelete = async (imageUrl: string) => {
     setLoading(true);
     const filePath = imageUrl.replace(public_url, "");
+    console.log("filePath", filePath);
 
     try {
       // Supabase ストレージから画像を削除
