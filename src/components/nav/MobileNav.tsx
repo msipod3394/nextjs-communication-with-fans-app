@@ -5,11 +5,12 @@ import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link";
 import { pagesPath } from "../../../utils/$path";
 
-type MainNavProps = {
+type MobileNav = {
   items: NavItem[];
+  closeMenu: () => void;
 };
 
-export default function MobileNav({ items }: MainNavProps) {
+export default function MobileNav({ items, closeMenu }: MobileNav) {
   // body のスクロールをロック
   useLockBodyScroll();
 
@@ -23,7 +24,12 @@ export default function MobileNav({ items }: MainNavProps) {
           {items.map(
             (item) =>
               !item.disabled && (
-                <Link key={item.title} href={item.href} className="text-sm">
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="text-sm"
+                  onClick={closeMenu}
+                >
                   {item.title}
                 </Link>
               )

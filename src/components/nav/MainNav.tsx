@@ -48,7 +48,9 @@ export const MainNav = ({ items }: MainNavProps) => {
         <Icon.menu className="w-full h-full bg-black text-white" />
       </Button>
       {/* モバイルメニュー表示 */}
-      {showMobileMenu && <MobileNav items={items} />}
+      {showMobileMenu && (
+        <MobileNav items={items} closeMenu={() => setShowMobileMenu(false)} />
+      )}
     </div>
   );
 };
