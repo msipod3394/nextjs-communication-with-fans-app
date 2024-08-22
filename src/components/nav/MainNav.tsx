@@ -14,8 +14,6 @@ type MainNavProps = {
 };
 
 export const MainNav = ({ items }: MainNavProps) => {
-  console.log(items);
-
   // カレントページにハイライト
   const pathSegments = useSelectedLayoutSegments();
   const isCurrent = (itemHref: string) =>
