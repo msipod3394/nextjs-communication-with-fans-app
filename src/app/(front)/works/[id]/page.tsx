@@ -1,4 +1,5 @@
 import { WorkImages } from "@/components/front/works/WorkImages";
+import { WorkJsonLD } from "@/components/front/works/WorkJsonLD";
 import { Icon } from "@/components/icon/icon";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { fontRoboto } from "@/configs/font";
@@ -45,6 +46,8 @@ export default async function WorksDetailPage({ params }: ParamsProps) {
 
   return (
     <>
+      <WorkJsonLD article={content} />
+
       <article className="grid gap-2">
         {/* 説明文 */}
         <section className="space-y-4">
