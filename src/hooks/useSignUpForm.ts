@@ -45,8 +45,8 @@ export const useSignUpForm = () => {
           throw signUpError;
         }
 
-        // router.push("/auth/login");
-        router.push(pagesPath.contact.$url);
+        const loginUrl = pagesPath.login.$url().pathname;
+        router.push(loginUrl);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);
