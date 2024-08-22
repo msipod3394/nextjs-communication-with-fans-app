@@ -1,5 +1,6 @@
 import { AuthLogin } from "@/components/auth/AuthLogin";
 import Link from "next/link";
+import { pagesPath } from "../../../../utils/$path";
 
 export default function SignIn() {
   return (
@@ -14,7 +15,7 @@ export default function SignIn() {
         <AuthLogin />
         <p className="px-6 text-center text-sm text-muted-foreground">
           <Link
-            href={"/login"}
+            href={pagesPath.login.$url().path}
             className="hover:text-brand underline underline-offset-4"
           >
             アカウントをお持ちの方はこちら

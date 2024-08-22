@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { pagesPath } from "../../utils/$path";
 
 type AuthFormValues = z.infer<typeof AuthFormSchema>;
 
@@ -44,7 +45,8 @@ export const useSignUpForm = () => {
           throw signUpError;
         }
 
-        router.push("/auth/login");
+        // router.push("/auth/login");
+        router.push(pagesPath.contact.$url);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);

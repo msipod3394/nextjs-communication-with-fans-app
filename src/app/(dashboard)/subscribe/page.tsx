@@ -7,6 +7,7 @@ import { getUserCurrent } from "@/lib/session";
 import { getAllPlans } from "@/utils/getAllPlans";
 import { getUserData } from "@/utils/getUserData";
 import Link from "next/link";
+import { pagesPath } from "../../../../utils/$path";
 
 export default async function SubscribePage() {
   const [plans, session, user] = await Promise.all([
@@ -51,7 +52,7 @@ export default async function SubscribePage() {
         ) : (
           <div className="mt-4 flex flex-col gap-4">
             <p>現在、契約中のプランはありません。</p>
-            <Link href="/membership" passHref>
+            <Link href={pagesPath.membership.$url().path} passHref>
               <Button className="w-[220px]">メンバーシップに登録する</Button>
             </Link>
           </div>

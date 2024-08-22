@@ -6,6 +6,7 @@ import { fontRoboto } from "@/configs/font";
 import { useContactFormContext } from "@/contexts/ContactFormContext"; // コンテキストをインポート
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { pagesPath } from "../../../../../utils/$path";
 
 export default function ContactPage() {
   const { values } = useContactFormContext();
@@ -28,7 +29,10 @@ export default function ContactPage() {
         </div>
       )}
       <div className="mt-8 flex justify-center py-6 lg:py-10">
-        <Link href="/" className={cn(buttonVariants({ variant: "outline" }))}>
+        <Link
+          href={pagesPath.$url().path}
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
           <Icon.chevronLeft className="w-4 h-4 mr-1" />
           <span className={`${fontRoboto.className} text-md`}>Back to Top</span>
         </Link>

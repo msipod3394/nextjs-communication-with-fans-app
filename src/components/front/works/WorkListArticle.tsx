@@ -3,6 +3,7 @@ import { WorksContents } from "@/types/cms";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { pagesPath } from "../../../../utils/$path";
 
 type WorkListArticleProps = {
   content: WorksContents;
@@ -24,7 +25,7 @@ export const WorkListArticle = ({ content }: WorkListArticleProps) => {
           />
         </div>
         <Link
-          href={`/works/${content.id}`}
+          href={pagesPath.works._id(content.id).$url().path}
           className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center"
         >
           <div className="flex flex-col gap-2 text-center">
@@ -42,7 +43,10 @@ export const WorkListArticle = ({ content }: WorkListArticleProps) => {
           {format(new Date(content.createdAt), "yyyy/MM/dd")}
         </p>
       </div>
-      <Link className="absolute inset-0" href={`/works/${content.id}`}>
+      <Link
+        className="absolute inset-0"
+        href={pagesPath.works._id(content.id).$url().path}
+      >
         <span className="sr-only">View Article</span>
       </Link>
     </article>

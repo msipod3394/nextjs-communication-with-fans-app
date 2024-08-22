@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:path": "pathpida --ignorepath .gitignore --output ./utils"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.30.2",
@@ -60,6 +61,7 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "pathpida": "^0.22.0",
     "postcss": "^8",
     "prisma": "^5.17.0",
     "sass": "^1.77.8",

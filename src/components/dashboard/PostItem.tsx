@@ -1,6 +1,7 @@
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import Link from "next/link";
+import { pagesPath } from "../../../utils/$path";
 import { PostOperations } from "./PostOperations";
 
 interface PostItemProps {
@@ -12,7 +13,7 @@ export const PostItem = ({ post }: PostItemProps) => {
     <div className="flex items-center justify-between p-4 ">
       <div className="grid gap-1">
         <Link
-          href={`/editor/${post.id}`}
+          href={pagesPath.editor._postId(post.id).$url().path}
           className="text-md font-medium hover:underline"
         >
           {post.title}

@@ -2,6 +2,7 @@
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { pagesPath } from "../../../utils/$path";
 import { Button } from "../ui/button";
 
 type AuthClientButtonProps = {
@@ -19,7 +20,7 @@ export const AuthClientButton = ({ session }: AuthClientButtonProps) => {
           ログアウト
         </Button>
       ) : (
-        <Link href="/login">
+        <Link href={pagesPath.login.$url().path}>
           <Button variant="outline">ログイン</Button>
         </Link>
       )}

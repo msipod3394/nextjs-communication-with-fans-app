@@ -10,6 +10,7 @@ import { getUserData } from "@/utils/getUserData";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { pagesPath } from "../../../../../utils/$path";
 
 type ParamsProps = {
   params: {
@@ -109,7 +110,7 @@ export default async function WorksDetailPage({ params }: ParamsProps) {
                       <p>
                         メンバーシップに登録することで、全てのコンテンツを閲覧することができます。
                       </p>
-                      <Link href="/membership" passHref>
+                      <Link href={pagesPath.membership.$url().path} passHref>
                         <Button className="w-[240px]">
                           メンバーシップに登録する
                         </Button>
@@ -124,7 +125,7 @@ export default async function WorksDetailPage({ params }: ParamsProps) {
       </article>
       <div className="mt-8 flex justify-center py-6 lg:py-10">
         <Link
-          href="/works"
+          href={pagesPath.works.$url().path}
           className={cn(buttonVariants({ variant: "outline" }))}
         >
           <Icon.chevronLeft className="w-4 h-4 mr-1" />
