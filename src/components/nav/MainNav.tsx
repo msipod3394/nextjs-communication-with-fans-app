@@ -3,7 +3,7 @@ import { fontRoboto } from "@/configs/font";
 import styles from "@/styles/index.module.scss";
 import { NavItem } from "@/types/site";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useSelectedLayoutSegments } from "next/navigation";
 import { useState } from "react";
 import { Icon } from "../icon/icon";
 import { Button } from "../ui/button";
@@ -14,8 +14,12 @@ type MainNavProps = {
 };
 
 export const MainNav = ({ items }: MainNavProps) => {
+  console.log(items);
+
   // カレントページにハイライト
-  const path = usePathname();
+  const pathSegments = useSelectedLayoutSegments();
+  const isCurrent = (itemHref: string) =>
+    pathSegments.includes(itemHref.replace(/\//g, ""));
 
   // メニュー開閉の状態管理
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
@@ -32,7 +36,7 @@ export const MainNav = ({ items }: MainNavProps) => {
                     href={item.href}
                     className={`${fontRoboto.className} text-md font-semibold ${
                       styles.animeUnderline
-                    } ${path === item.href ? styles.isCurrent : ""}`}
+                    } ${isCurrent(item.href) ? styles.isCurrent : ""}`}
                   >
                     {item.title}
                   </Link>
